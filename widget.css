@@ -1,0 +1,329 @@
+/* Grid setup */
+
+.widgetGrid {
+    display: flex;
+    gap: 5px;
+
+    width: 360px;
+    height: min-content;
+
+    flex-wrap: wrap;
+}
+
+.subGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#widgetsGrid {
+    display: none;
+}
+
+/* Default widget styling */
+
+.widget {
+    width: fit-content;
+    height: fit-content;
+
+    padding: 25px;
+    border-radius: 16px;
+    background-color: rgb(31, 31, 31);
+    mix-blend-mode: difference;
+}
+
+/* Volume slider widget */
+
+.volumeSliderWidget {
+    background-color: rgb(0, 0, 0);
+    border-radius: 500px;
+
+    width: 2.75em;
+    height: fit-content;
+    padding: 5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    position: relative;
+
+}
+
+.volumeSliderWidget .track {
+    background-color: rgb(56, 56, 56);
+    border-radius: 100px;
+
+    width: .4em;
+    height: 13em;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    position: relative;
+}
+
+.volumeSliderWidget .progress {
+    width: calc(100% - 10px);
+    height: 50%;
+    max-height: 13em;
+    min-height: 2.1em;
+
+    background-color: rgb(114, 114, 114);
+    border-radius: 500px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    bottom: 45px;
+}
+
+.progress i {
+    position: absolute;
+    z-index: 100;
+    top: 7px;
+
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+}
+
+.volumeSliderWidget .vswBtn {
+    width: 100%;
+    aspect-ratio: 1/1;
+
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgb(131, 131, 131);
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.volumeSliderWidget .vswBtn:last-of-type {
+    background-color: transparent;
+}
+
+.volumeSliderWidget .vswBtn:last-of-type:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Media Player Widget */
+
+.musicControlWidget {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, .5fr);
+    gap: 5px;
+
+    position: relative;
+    height: 90px;
+    width: min-content;
+}
+
+.button {
+    height: 70px;
+    width: 70px;
+
+    border-radius: 16px;
+    background-color: rgb(104, 104, 104);
+    color: rgb(170, 170, 170);
+
+    font-size: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button:hover {
+    background-color: rgb(71, 71, 71);
+}
+
+.button:not(:first-of-type) {
+    width: 50px;
+
+    color: rgb(109, 109, 109);
+    background-color: rgb(65, 65, 65);
+    font-size: 20px;
+}
+
+.btn1 {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.btn2 {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.btn3 {
+    grid-area: 1 / 3 / 2 / 4;
+}
+
+.musicControlWidget .slider {
+    width: 100%;
+    height: 20px;
+    grid-area: 2 / 1 / 3 / 4;
+
+    position: relative;
+}
+
+.line {
+    background: url("https://ewebdesign.com/wp-content/themes/ewebdesign/assets/img/wave.svg");
+    filter: brightness(0) saturate(0) contrast(0);
+    background-repeat: repeat-x;
+    background-size: 20px 10px;
+
+    animation: move 35s linear infinite;
+
+    text-decoration: none;
+    background-color: transparent;
+
+    max-width: 180px;
+    width: 50px;
+    height: 28px;
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-85%);
+}
+
+.line::after {
+    content: "";
+    width: 13px;
+    height: 13px;
+
+    background-color: black;
+    border-radius: 50px;
+
+    position: absolute;
+    right: -2px;
+    top: 50%;
+    transform: translateY(25%);
+}
+
+.line::before {
+    content: "";
+    width: 100%;
+    height: 2px;
+    background-color: var(--flatLine);
+
+    position: absolute;
+    bottom: 3px;
+
+    /* transform: translateY(-50%); */
+}
+
+@keyframes move {
+    from {
+        background-position: 500px 19px;
+    }
+
+    to {
+        background-position: 2px 19px;
+    }
+}
+
+/* Time Picker widget */
+
+.timePickerWidget {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    height: 150px;
+    width: 180px;
+}
+
+.clockBody {
+    width: 95%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+
+    position: relative;
+
+    background-color: rgb(0, 0, 0);
+}
+
+#hour,
+#minute,
+#second {
+    position: absolute;
+    transform-origin: bottom;
+}
+
+#hour {
+    width: 2%;
+    height: 25%;
+    top: 25%;
+    left: 50%;
+}
+
+#hour::before {
+    content: "";
+
+    width: 15px;
+    height: 50px;
+
+    background-color: rgb(124, 124, 124);
+    border-radius: 50px;
+
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+
+#minute {
+    width: 2%;
+    height: 30%;
+    top: 19%;
+    left: 50%;
+    opacity: 0.8;
+}
+
+#minute::before {
+    content: "";
+
+    width: 15px;
+    height: 65px;
+
+    background-color: rgb(75, 75, 75);
+    border-radius: 500px;
+
+    position: absolute;
+    left: 50%;
+    top: -5px;
+    transform: translateX(-50%);
+}
+
+#second {
+    width: 1%;
+    height: 40%;
+    top: 9%;
+    left: 49.25%;
+    opacity: 1;
+}
+
+#second::before {
+    content: "";
+
+    width: 17px;
+    height: 17px;
+
+    background-color: rgb(143, 143, 143);
+    border-radius: 50%;
+
+    position: absolute;
+    left: 50%;
+    top: -5px;
+    transform: translateX(-50%);
+}

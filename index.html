@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>YouBoard</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='shape.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='pinBoard.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='widget.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='fonts.css'>
+    <script src="https://kit.fontawesome.com/a1fc6f0f3a.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="pinBoard" id="pinBoard">
+    </div>
+
+    <div class="multiBar">
+        <div class="pageLabel" id="pageLabel">Shapes (Pinboard)</div>
+        <div class="pageNav">
+            <div class="pageBtn" id="pbShps" onclick="shapesPage()">
+                <i class="fa-solid fa-shapes"></i>
+            </div>
+            <div class="pageBtn" id="pbWids" onclick="widgetsPage()">
+                <i class="fa-solid fa-sliders"></i>
+            </div>
+
+            <div class="pageBtn" id="pbWids" onclick="backgroundGradientGen()">
+                <i class="fa-solid fa-refresh"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="page shapesGrid" id="shapesGrid">
+        <div class="shape svgShape w1" id="shape1" onClick="shapeClick(this)"></div>
+        <div class="shape svgShape w2" id="shape2" onClick="shapeClick(this)"></div>
+        <div class="shape svgShape w3" id="shape3" onClick="shapeClick(this)"></div>
+        <div class="shape cssShape w4" id="shape4" onClick="shapeClick(this)"></div>
+        <div class="shape cssShape w5" id="shape5" onClick="shapeClick(this)"></div>
+    </div>
+
+    <div class="page widgetGrid" id="widgetsGrid">
+        <div class="widget">
+            <div class="volumeSliderWidget" id="vsw">
+                <div class="vswBtn ringerBtn">
+                    <i class="fa-solid fa-bell"></i>
+                </div>
+                <div class="track"></div>
+                <div class="progress" id="vsp">
+                    <i class="fa-brands fa-itunes-note"></i>
+                </div>
+                <div class="vswBtn moreBtn">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </div>
+            </div>
+        </div>
+        <div class="subGrid">
+            <div class="widget">
+                <div class="musicControlWidget">
+                    <div class="button btn1" id="playPause" data-state="playing">
+                        <i class="fa-solid fa-pause"></i>
+                    </div>
+                    <div class="button btn2">
+                        <i class="fa-solid fa-backward-step"></i>
+                    </div>
+                    <div class="button btn3">
+                        <i class="fa-solid fa-forward-step"></i>
+                    </div>
+                    <div class="slider">
+                        <div class="line" id="playingLine"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="widget">
+                <div class="timePickerWidget">
+                    <div class="clockBody">
+                        <div id="minute"></div>
+                        <div id="hour"></div>
+                        <div id="second"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src='main.js'></script>
+    <script src='pinBoard.js'></script>
+
+</body>
+
+</html>

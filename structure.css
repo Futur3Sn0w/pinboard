@@ -1,0 +1,122 @@
+:root {
+    --flatLine: transparent;
+    --borderColor: white;
+
+    --baseColor1: #e2dffd;
+    --baseColor2: #ffed68;
+    --baseColor3: #a5f1d3;
+    --baseColor4: #fecf97;
+    --baseColor5: #f4f5a2;
+    --baseColor6: #abe7e4;
+    --baseColor7: #c4acb3;
+    --baseColor8: #a8ebdb;
+    --baseColor9: #7cb3f7;
+    --baseColor10: #ecfba4;
+    --baseColor11: #faf083;
+    --baseColor12: #e3a384;
+    --baseColor13: #e4fb7c;
+    --baseColor14: #f7d099;
+    --baseColor15: #ebbcd0;
+    --baseColor16: #f3e4bb;
+    --baseColor17: #e4d3eb;
+    --baseColor18: #818d76;
+    --baseColor19: #f7f8c7;
+    --baseColor20: #e4dcfb;
+    --baseColor21: #a1a37e;
+    --baseColor22: #74b0f2;
+    --baseColor23: #a1aeb4;
+    --baseColor24: #86bcf6;
+    --baseColor25: #9cbeea;
+    --baseColor26: #c2c6a3;
+    --baseColor27: #d5dbc8;
+    --baseColor28: #acbca4;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    padding-top: 40px;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.hide {
+    display: none !important;
+}
+
+.multiBar {
+    width: 100vw;
+    height: 50px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pageNav {
+    width: 275px;
+    height: 40px;
+
+    display: flex;
+    gap: 3px;
+
+    margin: 0 5px 0 auto;
+
+    border-radius: 300px;
+    overflow: hidden;
+
+    mix-blend-mode: difference;
+}
+
+.pageBtn {
+    width: 50%;
+    height: 100%;
+
+    border-radius: 7px;
+    background-color: rgb(59, 59, 59);
+    color: rgb(139, 139, 139);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 600;
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+.pageBtn:hover {
+    background-color: rgb(17, 17, 17);
+}
+
+.pageLabel {
+    /* background-color: rgb(59, 59, 59); */
+    color: rgb(77, 77, 77);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'GST-Med';
+    font-weight: 400;
+    font-size: 23px;
+
+    margin: 0 auto 0 15px;
+}

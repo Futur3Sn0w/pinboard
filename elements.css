@@ -1,0 +1,201 @@
+.pinBoard {
+    display: grid;
+    align-items: stretch;
+    grid-row-gap: 5px;
+    grid-column-gap: 5px;
+    overflow: hidden;
+
+    width: calc(100vw - 10px);
+    height: calc(100vh - 50px);
+
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+
+    transition: transform .3s, opacity .3s, filter .2s;
+}
+
+.pinBoard .shape {
+    border-radius: 16px;
+    cursor: default;
+}
+
+.pinBoard.defocus {
+    transform: scale(.95);
+    opacity: .8;
+    filter: blur(8px);
+    pointer-events: none;
+
+    mix-blend-mode: difference;
+}
+
+.shapesGrid {
+    width: 520px;
+    height: 320px;
+
+    position: absolute;
+    bottom: -70%;
+    overflow: hidden;
+
+    transition: bottom .3s, opacity .3s, transform .3s;
+
+    border-radius: 16px 16px 0 0;
+    padding: 30px;
+
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.185);
+
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.sgShow {
+    bottom: 0;
+    opacity: 1;
+
+    transform: scale(1);
+}
+
+.shape {
+    min-width: 130px;
+    min-height: 130px;
+
+    mix-blend-mode: difference;
+    font-size: 35px;
+    cursor: pointer;
+
+    position: relative;
+    overflow: hidden;
+
+    transition: border .15s, background-color .05s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shape::before {
+    content: "";
+    min-width: 130px;
+    min-height: 130px;
+
+    background-size: 115px;
+    background-position: 50%;
+    background-repeat: no-repeat;
+
+    animation-iteration-count: infinite;
+    animation-play-state: paused;
+    animation-timing-function: linear;
+
+    filter: brightness(100) saturate(100) contrast(0);
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shape:hover {
+    background-color: rgba(100, 100, 100, 0.3) !important;
+}
+
+#shape1::before {
+    background-image: url('/shapes/shape1.svg');
+    opacity: 1;
+
+    /* animation-name: infiniteRotate; */
+    animation-duration: 20s;
+}
+
+#shape2::before {
+    background-image: url('/shapes/shape2.svg');
+    opacity: .8;
+
+    /* animation-name: infiniteRotate; */
+    animation-duration: 25s;
+    animation-direction: reverse;
+}
+
+#shape3::before {
+    background-image: url('/shapes/shape3.svg');
+    opacity: .6;
+
+    /* animation-name: infiniteRotate; */
+    animation-duration: 20s;
+}
+
+#shape4::before {
+    background-image: url('/shapes/shape4.svg');
+    opacity: .4;
+
+    /* animation-name: tiltLoop1; */
+    animation-duration: 2.5s;
+}
+
+#shape5::before {
+    background-image: url('/shapes/shape5.svg');
+    opacity: .2;
+
+    /* animation-name: floatLoop1; */
+    animation-duration: 3s;
+}
+
+@keyframes tiltLoop1 {
+    from {
+        transform: rotate(-15deg);
+    }
+
+    to {
+        transform: rotate(15deg);
+    }
+}
+
+@keyframes floatLoop1 {
+    from {
+        transform: translateY(-7px);
+    }
+
+    to {
+        transform: translateY(7px);
+    }
+}
+
+@keyframes infiniteRotate {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes cornerRotate1 {
+    0% {
+        transform: rotate(0);
+        border-radius: 15%;
+    }
+
+    25% {
+        transform: rotate(45deg);
+        border-radius: 50%;
+    }
+
+    50% {
+        transform: rotate(90deg);
+        border-radius: 15%;
+    }
+
+    75% {
+        transform: rotate(120deg);
+        border-radius: 50%;
+    }
+
+    100% {
+        transform: rotate(180deg);
+        border-radius: 15%;
+    }
+}

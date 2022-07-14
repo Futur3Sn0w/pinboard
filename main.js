@@ -5,11 +5,14 @@ var pageLabel = document.getElementById('pageLabel');
 var gridWidth = Math.round(window.innerWidth / 130);
 var gridHeight = Math.round(window.innerHeight / 130) - 1;
 
+var savedGridState = localStorage.getItem('pbSet');
+
 window.onload = function () {
     backgroundGradientGen();
     makePinBoard();
+    checkPBLS();
 
-    pinBoard.innerHTML = localStorage.getItem('pbSet');
+    pinBoard.innerHTML = savedGridState;
 }
 
 function makePinBoard() {

@@ -15,8 +15,9 @@
 </head>
 
 <body>
-    <div class="pinBoard" id="pinBoard">
-    </div>
+    <div class="pinBoard" id="pinBoard"></div>
+
+    <div class="blankBoard">Your pinboard is blank.<br>Click the + button to add a widget.</div>
 
     <div class="multiBar">
         <div class="pageLabel" id="pageLabel">Shapes (Pinboard)</div>
@@ -100,6 +101,7 @@
             $(".shapesGrid").removeClass('sgShow');
             $(".pinBoard").removeClass('defocus');
             localStorage.setItem('pbSet', pinBoard.innerHTML);
+            checkPBLS();
         });
 
         $(document).on("click", ".pbSolo", function () {
@@ -110,7 +112,16 @@
         $(document).on("click", ".pbWidget", function () {
             $(this).remove();
             localStorage.setItem('pbSet', pinBoard.innerHTML);
+            checkPBLS();
         });
+
+        function checkPBLS() {
+            if (localStorage.getItem('pbSet') == "") {
+                $(".blankBoard").removeClass('hide');
+            } else {
+                $(".blankBoard").addClass('hide');
+            }
+        }
 
         function widgetsPage() {
             widgetsGrid.style.display = "flex";

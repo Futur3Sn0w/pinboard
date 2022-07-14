@@ -2,11 +2,21 @@ var pinBoard = document.getElementById('pinBoard');
 var widgetsGrid = document.getElementById('widgetsGrid');
 var pageLabel = document.getElementById('pageLabel');
 
+var gridWidth = Math.round(window.innerWidth / 130);
+var gridHeight = Math.round(window.innerHeight / 130) - 1;
+
 window.onload = function () {
     backgroundGradientGen();
     makePinBoard();
 
     pinBoard.innerHTML = localStorage.getItem('pbSet');
+}
+
+function makePinBoard() {
+    pinBoard.style.maxWidth = gridWidth * 130;
+    pinBoard.style.maxHeight = gridHeight * 130;
+    pinBoard.style.gridTemplateColumns = "repeat(" + gridWidth + ", 1fr)";
+    pinBoard.style.gridTemplateRows = "repeat(" + gridHeight + ", 1fr)";
 }
 
 function backgroundGradientGen() {

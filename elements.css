@@ -121,7 +121,7 @@
 }
 
 #shape1::before {
-    background-image: url('/shapes/shape1.svg');
+    background-image: url('shapes/shape1.svg');
     opacity: 1;
 
     /* animation-name: infiniteRotate; */
@@ -129,7 +129,7 @@
 }
 
 #shape2::before {
-    background-image: url('/shapes/shape2.svg');
+    background-image: url('shapes/shape2.svg');
     opacity: .8;
 
     /* animation-name: infiniteRotate; */
@@ -138,7 +138,7 @@
 }
 
 #shape3::before {
-    background-image: url('/shapes/shape3.svg');
+    background-image: url('shapes/shape3.svg');
     opacity: .6;
 
     /* animation-name: infiniteRotate; */
@@ -146,7 +146,7 @@
 }
 
 #shape4::before {
-    background-image: url('/shapes/shape4.svg');
+    background-image: url('shapes/shape4.svg');
     opacity: .4;
 
     /* animation-name: tiltLoop1; */
@@ -154,7 +154,7 @@
 }
 
 #shape5::before {
-    background-image: url('/shapes/shape5.svg');
+    background-image: url('shapes/shape5.svg');
     opacity: .2;
 
     /* animation-name: floatLoop1; */

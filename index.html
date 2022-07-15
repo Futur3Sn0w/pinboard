@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>pinBoard | v0.4.0</title>
+    <title>pinBoard | v0.5.0</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='structure.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='elements.css'>
@@ -15,76 +15,172 @@
 </head>
 
 <body>
-    <div class="pinBoard" id="pinBoard"></div>
+    <div class="pbContainer" id="pbCont">
+        <div class="pinBoard" id="pinBoard"></div>
+    </div>
 
-    <div class="blankBoard">Your pinboard is blank.<br>Click the + button to add a widget.</div>
+    <div class="settings" id="settings">
+        <div class="settingsContainer">
+            <div class="setting">
+                <i class="fa-solid fa-table-list"></i>
+                <div class="settingLabel" data-settingCaption="Change vertical alignment of Pinboard">Pinboard Alignment
+                </div>
+                <div class="sett-options">
+                    <div class="sett-option pb-align" data-pbAlign="flex-start">
+                        <label for="pba-top">Top</label>
+                        <input type="radio" name="pb-align" id="pba-top" checked>
+                    </div>
+                    <div class="sett-option pb-align" data-pbAlign="center">
+                        <label for="pba-center">Center</label>
+                        <input type="radio" name="pb-align" id="pba-center">
+                    </div>
+                </div>
+            </div>
+            <div class="setting">
+                <i class="fa-solid fa-arrows-rotate"></i>
+                <div class="settingLabel" data-settingCaption="Remove all pins and their settings.">Reset Pinboard</div>
+                <div class="sett-options">
+                    <div class="sett-option so-button" id="rp-reset">Reset</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="blankBoard">
+        Your pinboard is blank.<br>Click the + button to add a widget.
+    </div>
 
     <div class="multiBar">
-        <div class="pageLabel" id="pageLabel">Shapes (Pinboard)</div>
-        <div class="pageNav">
-            <div class="pageBtn" id="pbShps" onclick="shapesPage()">
+        <div class="pageLabel" id="pageLabel">Frames (Pinboard)</div>
+        <div class="pageNav topNav">
+            <div class="pageBtn pbEdit" id="pbChangeBgd">
+                <i class="fa-solid fa-edit"></i>
+            </div>
+            <div class="pageBtn" id="pbRefresh" onclick="backgroundGradientGen();">
+                <i class="fa-solid fa-palette"></i>
+            </div>
+        </div>
+        <div class="pageNav sideNav">
+            <div class="pageBtn pageBtn-sel" id="pbShps" data-pageName="Pinboard" onclick="shapesPage()">
                 <i class="fa-solid fa-shapes"></i>
             </div>
-            <div class="pageBtn" id="pbWids" onclick="widgetsPage()">
+
+            <div class="pageBtn" id="pbWids" data-pageName="Widgets" onclick="widgetsPage()">
                 <i class="fa-solid fa-sliders"></i>
             </div>
 
-            <div class="pageBtn" id="pbChangeBgd" onclick="backgroundGradientGen()">
-                <i class="fa-solid fa-refresh"></i>
+            <div class="pageBtn" id="pbSettings" data-pageName="Settings" onclick="settingsPage()">
+                <i class="fa-solid fa-gear"></i>
             </div>
+        </div>
+    </div>
 
-            <div class="pageBtn pbSolo">
-                <i class="fa-solid fa-plus"></i>
-            </div>
+    <div class="pageBtn pbAdd">
+        <i class="fa-solid fa-plus"></i>
+    </div>
+
+    <div class="shapeOptions" id="shapeOptions">
+        <div class="shapeOption shop1" data-optName="Remove">
+            <i class="fa-solid fa-trash"></i>
+        </div>
+        <div class="shapeOption shop2" data-optName="Rename">
+            <i class="fa-solid fa-pen"></i>
         </div>
     </div>
 
     <div class="shapesGrid" id="shapesGrid">
-        <div class="shape addWidget" id="shape1" onClick=""></div>
-        <div class="shape addWidget" id="shape2" onClick=""></div>
-        <div class="shape addWidget" id="shape3" onClick=""></div>
-        <div class="shape addWidget" id="shape4" onClick=""></div>
-        <div class="shape addWidget" id="shape5" onClick=""></div>
-    </div>
-
-    <div class="widgetGrid" id="widgetsGrid">
-        <div class="widget">
-            <div class="volumeSliderWidget" id="vsw">
-                <div class="vswBtn ringerBtn">
-                    <i class="fa-solid fa-bell"></i>
+        <div class="shape addWidget" id="shape1" data-opacity="100%">
+            <div class="shapeOptions" id="shapeOptions">
+                <div class="shapeOption shop1">
+                    <i class="fa-solid fa-trash"></i>
                 </div>
-                <div class="track"></div>
-                <div class="progress" id="vsp">
-                    <i class="fa-brands fa-itunes-note"></i>
-                </div>
-                <div class="vswBtn moreBtn">
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                <div class="shapeOption shop2">
+                    <i class="fa-solid fa-pen"></i>
                 </div>
             </div>
         </div>
-        <div class="subGrid">
+        <div class="shape addWidget" id="shape2" data-opacity="80%">
+            <div class="shapeOptions" id="shapeOptions">
+                <div class="shapeOption shop1">
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+                <div class="shapeOption shop2">
+                    <i class="fa-solid fa-pen"></i>
+                </div>
+            </div>
+        </div>
+        <div class="shape addWidget" id="shape3" data-opacity="60%">
+            <div class="shapeOptions" id="shapeOptions">
+                <div class="shapeOption shop1">
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+                <div class="shapeOption shop2">
+                    <i class="fa-solid fa-pen"></i>
+                </div>
+            </div>
+        </div>
+        <div class="shape addWidget" id="shape4" data-opacity="40%">
+            <div class="shapeOptions" id="shapeOptions">
+                <div class="shapeOption shop1">
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+                <div class="shapeOption shop2">
+                    <i class="fa-solid fa-pen"></i>
+                </div>
+            </div>
+        </div>
+        <div class="shape addWidget" id="shape5" data-opacity="20%">
+            <div class="shapeOptions" id="shapeOptions">
+                <div class="shapeOption shop1">
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+                <div class="shapeOption shop2">
+                    <i class="fa-solid fa-pen"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="widgetGrid" id="widgetsGrid">
+        <div class="widgets">
             <div class="widget">
-                <div class="musicControlWidget">
-                    <div class="button btn1" id="playPause" data-state="playing">
-                        <i class="fa-solid fa-pause"></i>
+                <div class="volumeSliderWidget" id="vsw">
+                    <div class="vswBtn ringerBtn">
+                        <i class="fa-solid fa-bell"></i>
                     </div>
-                    <div class="button btn2">
-                        <i class="fa-solid fa-backward-step"></i>
+                    <div class="track"></div>
+                    <div class="progress" id="vsp">
+                        <i class="fa-brands fa-itunes-note"></i>
                     </div>
-                    <div class="button btn3">
-                        <i class="fa-solid fa-forward-step"></i>
-                    </div>
-                    <div class="slider">
-                        <div class="line" id="playingLine"></div>
+                    <div class="vswBtn moreBtn">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
                     </div>
                 </div>
             </div>
-            <div class="widget">
-                <div class="timePickerWidget">
-                    <div class="clockBody">
-                        <div id="minute"></div>
-                        <div id="hour"></div>
-                        <div id="second"></div>
+            <div class="subGrid">
+                <div class="widget">
+                    <div class="musicControlWidget">
+                        <div class="button btn1" id="playPause" data-state="playing">
+                            <i class="fa-solid fa-pause"></i>
+                        </div>
+                        <div class="button btn2">
+                            <i class="fa-solid fa-backward-step"></i>
+                        </div>
+                        <div class="button btn3">
+                            <i class="fa-solid fa-forward-step"></i>
+                        </div>
+                        <div class="slider">
+                            <div class="line" id="playingLine"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget">
+                    <div class="timePickerWidget">
+                        <div class="clockBody">
+                            <div id="minute"></div>
+                            <div id="hour"></div>
+                            <div id="second"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -95,49 +191,136 @@
 
     <script>
         $(document).on("click", ".addWidget", function () {
-            var clickedBtnID = $(this).attr('id');
             $(this).clone().appendTo('.pinBoard').removeClass('addWidget').addClass('pbWidget');
 
             $(".shapesGrid").removeClass('sgShow');
             $(".pinBoard").removeClass('defocus');
+
+            checkPBLS();
+            saveSettings();
+        });
+
+        $(document).on("click", ".sideNav .pageBtn:not(.pageBtn-sel)", function () {
+            $('.pageBtn-sel').removeClass('pageBtn-sel');
+            $(this).addClass('pageBtn-sel');
+        });
+
+        $(document).on("click", ".pbAdd", function () {
+            $(".shapesGrid").addClass('sgShow');
+            $(".pinBoard").addClass('defocus');
+
+            $('.pbEdit>i').addClass('fa-edit').removeClass('fa-check');
+            $('.pinBoard').removeClass('pinBoard-EditMode');
+            $('.pbEdit').addClass('hide');
+        });
+
+        $(document).on("click", ".defocus", function (event) {
+            event.preventDefault();
+        });
+
+        $(document).on("click", ".pbEdit", function () {
+            if ($('.pinBoard').hasClass('pinBoard-EditMode')) {
+                $('.pinBoard').removeClass('pinBoard-EditMode');
+                $('.pbEdit>i').addClass('fa-edit').removeClass('fa-check');
+                checkPBLS();
+            } else {
+                $('.pinBoard').addClass('pinBoard-EditMode');
+                $('.pbEdit>i').addClass('fa-check').removeClass('fa-edit');
+                $('.shape').removeClass('selectedShape');
+                checkPBLS();
+            }
+        });
+
+        $(document).on("click", ".shop1", function () {
+            $(this).parent().parent().remove();
+
             localStorage.setItem('pbSet', pinBoard.innerHTML);
             checkPBLS();
         });
 
-        $(document).on("click", ".pbSolo", function () {
-            $(".shapesGrid").addClass('sgShow');
-            $(".pinBoard").addClass('defocus');
+        $(document).on("click", ".shop2", function () {
+            $(this).parent().parent().attr('data-opacity', 'vNext');
+
+            localStorage.setItem('pbSet', pinBoard.innerHTML);
+            checkPBLS();
         });
 
         $(document).on("click", ".pbWidget", function () {
-            $(this).remove();
-            localStorage.setItem('pbSet', pinBoard.innerHTML);
-            checkPBLS();
+            if ($('.pinBoard').hasClass('pinBoard-EditMode')) {
+                $('.shape').removeClass('selectedShape');
+                $(this).toggleClass('selectedShape');
+                checkPBLS();
+            }
         });
+
+        $(document).on("click", "#rp-reset", function () {
+            alert('Pinboard has been reset. Page will now refresh!')
+            localStorage.setItem('pbSet', "");
+            document.getElementById('pbCont').style.alignItems = "flex-start";
+            location.reload();
+        });
+
+        $(document).on("click", ".pb-align", function () {
+            var align = $(this).children('label').text().toLowerCase();
+
+            if (align == "center") {
+                document.getElementById('pbCont').style.alignItems = "center";
+                localStorage.setItem('setting-valign', pinBoardContainer.style.alignItems);
+                saveSettings();
+            } else {
+                document.getElementById('pbCont').style.alignItems = "flex-start";
+                localStorage.setItem('setting-valign', pinBoardContainer.style.alignItems);
+                saveSettings();
+            }
+        });
+
+        function saveSettings() {
+            localStorage.setItem('pbSet', pinBoard.innerHTML);
+        }
 
         function checkPBLS() {
             if (localStorage.getItem('pbSet') == "") {
                 $(".blankBoard").removeClass('hide');
+                $('.pbEdit').addClass('hide');
+                $('.pinBoard').removeClass('pinBoard-EditMode');
+                $('.pbEdit>i').addClass('fa-edit').removeClass('fa-check');
             } else {
                 $(".blankBoard").addClass('hide');
+                $('.pbEdit').removeClass('hide');
             }
         }
 
         function widgetsPage() {
             widgetsGrid.style.display = "flex";
+            settings.style.display = "none";
             pinBoard.style.display = "none";
+
             $(".shapesGrid").removeClass('sgShow');
-            $(".pbSolo").addClass('hide');
+            $(".pbEdit").addClass('hide');
 
             pageLabel.innerText = "Widgets (DEMO)"
         }
 
         function shapesPage() {
-            pinBoard.style.display = "grid";
+            pinBoard.style.display = "flex";
+            settings.style.display = "none";
             widgetsGrid.style.display = "none";
-            $(".pbSolo").removeClass('hide');
 
-            pageLabel.innerText = "Shapes (Pinboard)"
+            $(".shapesGrid").removeClass('sgShow');
+            $(".pbEdit").removeClass('hide');
+
+            pageLabel.innerText = "Frames (Pinboard)"
+        }
+
+        function settingsPage() {
+            settings.style.display = "flex";
+            widgetsGrid.style.display = "none";
+            pinBoard.style.display = "none";
+
+            $(".shapesGrid").removeClass('sgShow');
+            $(".pbEdit").addClass('hide');
+
+            pageLabel.innerText = "Settings"
         }
     </script>
 

@@ -2,10 +2,31 @@
 
 .widgetGrid {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    width: calc(100vw - 70px);
+    height: calc(100vh - 50px);
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    transition: transform .3s, opacity .3s, filter .2s;
+    border-radius: 16px 0 0 0;
+
+    background-color: white;
+}
+
+.widgets {
+    display: flex;
     gap: 5px;
 
     width: 360px;
     height: min-content;
+
+    position: absolute;
 
     flex-wrap: wrap;
 }

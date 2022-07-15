@@ -1,38 +1,33 @@
-.blankBoard {
-    position: absolute;
-    left: 50%;
-    bottom: 15px;
-    transform: translateX(-50%);
-
-    width: 25ch;
-    box-sizing: content-box;
-
-    font-size: 16px;
-    font-family: GST-Med;
-    font-weight: 400;
-    color: rgb(189, 189, 189);
-
-    background-color: rgb(44, 44, 44);
-    mix-blend-mode: difference;
-    border-radius: 100px;
-    padding: 10px 25px;
-}
-
-.pinBoard {
-    display: grid;
-    align-items: stretch;
-    grid-row-gap: 5px;
-    grid-column-gap: 5px;
-    overflow: hidden;
-
-    width: calc(100vw - 10px);
+.pbContainer {
+    width: calc(100vw - 70px);
     height: calc(100vh - 50px);
 
     position: absolute;
     bottom: 0;
-    left: 5px;
+    right: 0;
+
+    border-radius: 16px 0 0 0;
+    overflow: hidden;
+
+    display: flex;
+}
+
+.pinBoard {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    overflow: hidden;
+
+    width: 100%;
+    height: fit-content;
+    max-height: 100%;
 
     transition: transform .3s, opacity .3s, filter .2s;
+
+    background-color: inherit;
 }
 
 .pinBoard .shape {
@@ -41,12 +36,23 @@
 }
 
 .pinBoard.defocus {
-    transform: scale(.95);
+    /* transform: scale(.95); */
     opacity: .8;
     filter: blur(8px);
-    pointer-events: none;
 
     mix-blend-mode: difference;
+}
+
+.pinBoard-EditMode .shape {
+    background-color: rgba(100, 100, 100, 0.3) !important;
+    transform: scale(0.85);
+    cursor: grab;
+}
+
+.pinBoard-EditMode .shape.selectedShape {
+    background-color: rgba(100, 100, 100, 0.3) !important;
+    transform: scale(0.95);
+    border: 3px solid rgb(124, 124, 124);
 }
 
 .shapesGrid {
@@ -80,14 +86,16 @@
 
 .shape {
     min-width: 130px;
+    max-width: 130px;
     min-height: 130px;
+    max-height: 130px;
 
     mix-blend-mode: difference;
     font-size: 35px;
     cursor: pointer;
 
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
 
     transition: border .15s, background-color .05s;
 
@@ -118,7 +126,15 @@
     justify-content: center;
 }
 
-.shape:hover {
+.shape::after {
+    content: attr(data-opacity);
+
+    position: absolute;
+    font-size: 23px;
+}
+
+.pinBoard-EditMode .selectedShape,
+.addWidget:hover {
     background-color: rgba(100, 100, 100, 0.3) !important;
 }
 
@@ -163,6 +179,62 @@
     animation-duration: 3s;
 }
 
+.shapeOptions {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    width: 100%;
+    max-width: 150px;
+    height: 100%;
+    max-height: 150px;
+
+    background-color: rgb(58, 58, 58);
+
+    mix-blend-mode: unset;
+
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.pinBoard-EditMode .pbWidget .shapeOptions {
+    opacity: 0;
+}
+
+.pinBoard-EditMode .selectedShape .shapeOptions {
+    opacity: 1;
+    display: flex;
+}
+
+.shapeOption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    background-color: rgb(138, 138, 138);
+    border-radius: 4px;
+
+    width: 40px;
+    height: 40px;
+
+    cursor: pointer;
+}
+
+.shapeOption i {
+    font-size: 20px;
+}
+
+.shapeOption:hover {
+    background-color: rgb(180, 180, 180);
+}
+
 @keyframes tiltLoop1 {
     from {
         transform: rotate(-15deg);
@@ -170,6 +242,16 @@
 
     to {
         transform: rotate(15deg);
+    }
+}
+
+@keyframes tiltLoop2 {
+    from {
+        transform: scale(0.95) rotate(-3deg);
+    }
+
+    to {
+        transform: scale(0.95) rotate(3deg);
     }
 }
 
@@ -218,4 +300,99 @@
         transform: rotate(180deg);
         border-radius: 15%;
     }
+}
+
+.settings {
+    display: none;
+    align-items: stretch;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    width: calc(100vw - 70px);
+    height: calc(100vh - 50px);
+
+    user-select: none;
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+
+    border-radius: 16px 0 0 0;
+    overflow: hidden;
+}
+
+.settingsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 15px;
+}
+
+.setting {
+    width: 100%;
+    max-width: 450px;
+    height: 80px;
+
+    background-color: rgba(0, 0, 0, 0.116);
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.settingLabel {
+    font-size: 17px;
+    font-weight: 600;
+
+    margin-left: 10px;
+    transform: translateY(-8px);
+
+    position: relative;
+}
+
+.settingLabel::after {
+    content: attr(data-settingCaption);
+    font-size: 12px;
+    font-weight: 400;
+
+    width: max-content;
+
+    position: absolute;
+    bottom: -14px;
+    left: 0;
+}
+
+.setting i {
+    font-size: 20px;
+}
+
+.sett-options {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    margin: 0 20px 0 auto;
+}
+
+.sett-option {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.so-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 6px 13px;
+
+    border-radius: 500px;
+}
+
+.so-button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
 }

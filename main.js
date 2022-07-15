@@ -1,17 +1,21 @@
 var pinBoard = document.getElementById('pinBoard');
+var pinBoardContainer = document.getElementById('pbCont');
+var settings = document.getElementById('settings');
 var widgetsGrid = document.getElementById('widgetsGrid');
 var pageLabel = document.getElementById('pageLabel');
 
-var gridWidth = Math.round(window.innerWidth / 130);
-var gridHeight = Math.round(window.innerHeight / 130) - 1;
+var gridWidth = Math.round(window.innerWidth / 130) - 1;
+var gridHeight = Math.round(window.innerHeight / 130);
 
 var savedGridState = localStorage.getItem('pbSet');
+var root = document.querySelector(':root');
 
 window.onload = function () {
     backgroundGradientGen();
-    makePinBoard();
+    // makePinBoard();
     checkPBLS();
 
+    pinBoardContainer.style.alignItems = localStorage.getItem('setting-valign');
     pinBoard.innerHTML = savedGridState;
 }
 
@@ -25,10 +29,16 @@ function makePinBoard() {
 function backgroundGradientGen() {
     var randNo = "--baseColor" + (Math.floor(Math.random() * 28));
     var randColor = "var(" + randNo + ")";
-    var NewColor = LightenDarkenColor(randColor, 40);
+    var NewColor = LightenDarkenColor(randNo, -40);
 
-    document.body.style.backgroundColor = randColor;
+    pinBoard.style.backgroundColor = randColor;
+    pinBoardContainer.style.backgroundColor = randColor;
+    settings.style.backgroundColor = randColor;
     shapesGrid.style.backgroundColor = randColor;
+    widgetsGrid.style.backgroundColor = randColor;
+    document.body.style.backgroundColor = NewColor;
+    pageLabel.style.color = randColor;
+    root.style.setProperty('--randColor', randColor);
 }
 
 function LightenDarkenColor(col, amt) {
@@ -143,7 +153,6 @@ setInterval(() => {
 
 var playPauseBtn = document.getElementById('playPause');
 var playingLine = document.getElementById('playingLine');
-var root = document.querySelector(':root');
 playing = true;
 
 playPauseBtn.onclick = function () {
@@ -159,3 +168,5 @@ playPauseBtn.onclick = function () {
         playing = !playing;
     }
 }
+
+// ====================

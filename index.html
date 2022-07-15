@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>pinBoard | v0.5.0</title>
+    <title>pinBoard | v0.6.0</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='structure.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='elements.css'>
@@ -17,6 +17,35 @@
 <body>
     <div class="pbContainer" id="pbCont">
         <div class="pinBoard" id="pinBoard"></div>
+    </div>
+
+    <div class="customShapeWindow" id="customShapeWindow">
+        <div class="shape cswPreview" id="shape1" data-opacity="">
+            <div class="shapeOptions" id="shapeOptions">
+                <div class="shapeOption shop1">
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+                <div class="shapeOption shop2">
+                    <i class="fa-solid fa-pen"></i>
+                </div>
+            </div>
+        </div>
+        <div class="customShapeOptions">
+            <div class="cso-opt opt1" data-optName="Shape">
+                <input type="radio" class="csoo-shape" data-shapeNo="1" name="customShape" id="csoo-shape-1" checked>
+                <input type="radio" class="csoo-shape" data-shapeNo="2" name="customShape" id="csoo-shape-2">
+                <input type="radio" class="csoo-shape" data-shapeNo="3" name="customShape" id="csoo-shape-3">
+                <input type="radio" class="csoo-shape" data-shapeNo="4" name="customShape" id="csoo-shape-4">
+                <input type="radio" class="csoo-shape" data-shapeNo="5" name="customShape" id="csoo-shape-5">
+            </div>
+            <div class="cso-opt opt2" data-optName="Opacity">
+                <input type="range" name="customShape" class="csoo-opacity" id="csoo-opacity">
+            </div>
+            <div class="cso-opt opt3" data-optName="Text">
+                <input type="text" name="customShape" id="csoo-text" placeholder="Shape Text">
+            </div>
+        </div>
+        <div class="csw-done">Add</div>
     </div>
 
     <div class="settings" id="settings">
@@ -43,6 +72,20 @@
                     <div class="sett-option so-button" id="rp-reset">Reset</div>
                 </div>
             </div>
+            <div class="setting">
+                <i class="fa-solid fa-arrows-up-down-left-right"></i>
+                <div class="settingLabel" data-settingCaption="Opt-into the movable widgets preview.">Movable Widgets
+                </div>
+                <div class="sett-options so-mw">
+                    <input type="radio" name="movableWidgetOptin" id="mw-enable">
+                    <input type="radio" name="movableWidgetOptin" id="mw-disable">
+                </div>
+            </div>
+            <div class="setting aboutBox">
+                <i class="fa-solid fa-info-circle"></i>
+                <div class="settingLabel" data-settingCaption="Pinboard is in beta. Be mindful of bugs!">
+                    Pinboard v0.6.0</div>
+            </div>
         </div>
     </div>
 
@@ -65,7 +108,7 @@
                 <i class="fa-solid fa-shapes"></i>
             </div>
 
-            <div class="pageBtn" id="pbWids" data-pageName="Widgets" onclick="widgetsPage()">
+            <div class="pageBtn" id="pbWids" data-pageName="Widgets" style="display: none;" onclick="widgetsPage()">
                 <i class="fa-solid fa-sliders"></i>
             </div>
 
@@ -89,7 +132,7 @@
     </div>
 
     <div class="shapesGrid" id="shapesGrid">
-        <div class="shape addWidget" id="shape1" data-opacity="100%">
+        <div class="shape addWidget" id="shape1" data-opacity="">
             <div class="shapeOptions" id="shapeOptions">
                 <div class="shapeOption shop1">
                     <i class="fa-solid fa-trash"></i>
@@ -99,7 +142,7 @@
                 </div>
             </div>
         </div>
-        <div class="shape addWidget" id="shape2" data-opacity="80%">
+        <div class="shape addWidget" id="shape2" data-opacity="">
             <div class="shapeOptions" id="shapeOptions">
                 <div class="shapeOption shop1">
                     <i class="fa-solid fa-trash"></i>
@@ -109,7 +152,7 @@
                 </div>
             </div>
         </div>
-        <div class="shape addWidget" id="shape3" data-opacity="60%">
+        <div class="shape addWidget" id="shape3" data-opacity="">
             <div class="shapeOptions" id="shapeOptions">
                 <div class="shapeOption shop1">
                     <i class="fa-solid fa-trash"></i>
@@ -119,7 +162,7 @@
                 </div>
             </div>
         </div>
-        <div class="shape addWidget" id="shape4" data-opacity="40%">
+        <div class="shape addWidget" id="shape4" data-opacity="">
             <div class="shapeOptions" id="shapeOptions">
                 <div class="shapeOption shop1">
                     <i class="fa-solid fa-trash"></i>
@@ -129,7 +172,7 @@
                 </div>
             </div>
         </div>
-        <div class="shape addWidget" id="shape5" data-opacity="20%">
+        <div class="shape addWidget" id="shape5" data-opacity="">
             <div class="shapeOptions" id="shapeOptions">
                 <div class="shapeOption shop1">
                     <i class="fa-solid fa-trash"></i>
@@ -138,6 +181,9 @@
                     <i class="fa-solid fa-pen"></i>
                 </div>
             </div>
+        </div>
+        <div class="shape customShape" id="customShapeBtn">
+            <i class="fa-solid fa-plus"></i>
         </div>
     </div>
 
@@ -200,13 +246,45 @@
             saveSettings();
         });
 
+        $(document).on("click", ".csw-done", function () {
+
+            customShapeWindow.style.display = "none";
+
+            $(".pinBoard").removeClass('defocus');
+
+            $('.cswPreview').css('opacity', $('#csoo-opacity').val() + "%");
+            $('.cswPreview').attr('data-opacity', $('#csoo-text').val());
+
+            $('.cswPreview').clone().appendTo('.pinBoard').removeClass('cswPreview').addClass('pbWidget');
+
+            checkPBLS();
+            saveSettings();
+            resetCustomShapeWindow();
+        });
+
+        $(document).on("click", "#customShapeBtn", function () {
+            customShapeWindow.style.display = "flex";
+            $(".shapesGrid").removeClass('sgShow');
+        });
+
+        $(document).on("click", ".customShapeWindow", function () {
+            $('.cswPreview').css('opacity', $('#csoo-opacity').val() + "%");
+            $('.cswPreview').attr('data-opacity', $('#csoo-text').val());
+        });
+
+        $(document).on("click", ".csoo-shape", function () {
+            $('.cswPreview').attr('id', 'shape' + $(this).attr('data-shapeNo'));
+        });
+
         $(document).on("click", ".sideNav .pageBtn:not(.pageBtn-sel)", function () {
             $('.pageBtn-sel').removeClass('pageBtn-sel');
             $(this).addClass('pageBtn-sel');
         });
 
         $(document).on("click", ".pbAdd", function () {
-            $(".shapesGrid").addClass('sgShow');
+            customShapeWindow.style.display = "flex";
+            $(".shapesGrid").removeClass('sgShow');
+            // $(".shapesGrid").addClass('sgShow');
             $(".pinBoard").addClass('defocus');
 
             $('.pbEdit>i').addClass('fa-edit').removeClass('fa-check');
@@ -273,6 +351,13 @@
                 saveSettings();
             }
         });
+
+        function resetCustomShapeWindow() {
+            $('.cswPreview').attr('id', 'shape1');
+            $('#csoo-opacity').val('50');
+            $('#csoo-text').val('');
+            $('.csoo-shape').prop('checked', false);
+        }
 
         function saveSettings() {
             localStorage.setItem('pbSet', pinBoard.innerHTML);

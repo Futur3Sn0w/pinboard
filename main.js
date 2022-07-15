@@ -4,6 +4,8 @@ var settings = document.getElementById('settings');
 var widgetsGrid = document.getElementById('widgetsGrid');
 var pageLabel = document.getElementById('pageLabel');
 
+var customShapeWindow = document.getElementById('customShapeWindow');
+
 var gridWidth = Math.round(window.innerWidth / 130) - 1;
 var gridHeight = Math.round(window.innerHeight / 130);
 

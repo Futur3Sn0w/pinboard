@@ -1,6 +1,6 @@
 .pbContainer {
     width: calc(100vw - 70px);
-    height: calc(100vh - 50px);
+    height: calc(100% - 50px);
 
     position: absolute;
     bottom: 0;
@@ -22,8 +22,7 @@
     overflow: hidden;
 
     width: 100%;
-    height: fit-content;
-    max-height: 100%;
+    /* min-height: 100%; */
 
     transition: transform .3s, opacity .3s, filter .2s;
 
@@ -70,7 +69,7 @@
 
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.185);
 
-    display: flex;
+    display: none !important;
     gap: 10px;
     flex-wrap: wrap;
     align-items: center;
@@ -103,7 +102,6 @@
 
 .shape {
     min-width: 130px;
-    max-width: 130px;
     min-height: 130px;
     max-height: 130px;
 
@@ -123,10 +121,10 @@
 
 .shape::before {
     content: "";
-    min-width: 130px;
+    min-width: 100%;
     min-height: 130px;
 
-    background-size: 115px;
+    background-size: calc(100% - 15px);
     background-position: 50%;
     background-repeat: no-repeat;
 
@@ -147,7 +145,14 @@
     content: attr(data-opacity);
 
     position: absolute;
+    width: 100%;
+    text-align: center;
     font-size: 23px;
+
+}
+
+.movable {
+    position: absolute;
 }
 
 .pinBoard-EditMode .selectedShape,
@@ -158,43 +163,35 @@
 
 #shape1::before {
     background-image: url('shapes/shape1.svg');
-    opacity: 1;
-
-    /* animation-name: infiniteRotate; */
-    animation-duration: 20s;
 }
 
 #shape2::before {
     background-image: url('shapes/shape2.svg');
-    /* opacity: .8; */
-
-    /* animation-name: infiniteRotate; */
-    animation-duration: 25s;
-    animation-direction: reverse;
 }
 
 #shape3::before {
     background-image: url('shapes/shape3.svg');
-    /* opacity: .6; */
-
-    /* animation-name: infiniteRotate; */
-    animation-duration: 20s;
 }
 
 #shape4::before {
     background-image: url('shapes/shape4.svg');
-    /* opacity: .4; */
-
-    /* animation-name: tiltLoop1; */
-    animation-duration: 2.5s;
 }
 
 #shape5::before {
     background-image: url('shapes/shape5.svg');
-    /* opacity: .2; */
+}
 
-    /* animation-name: floatLoop1; */
-    animation-duration: 3s;
+#shape6::before {
+    background-image: url('shapes/shape6.svg');
+}
+
+#shape7::before {
+    background-image: url('shapes/shape7.svg');
+}
+
+#shape6,
+#shape7 {
+    width: 260px;
 }
 
 .shapeOptions {
@@ -209,13 +206,11 @@
     gap: 5px;
 
     width: 100%;
-    max-width: 150px;
     height: 100%;
-    max-height: 150px;
 
     background-color: rgb(58, 58, 58);
 
-    mix-blend-mode: unset;
+    mix-blend-mode: difference;
 
     border-radius: 14px;
     overflow: hidden;
@@ -404,25 +399,46 @@
 }
 
 .so-mw {
-    display: none;
+    display: flex;
     flex-direction: row;
-    gap: 2px;
+    gap: 0;
 
     overflow: hidden;
     border-radius: 100px;
+    mix-blend-mode: difference;
 }
 
 .so-mw input {
     appearance: none;
-    background-color: rgba(255, 255, 255, 0.459);
+    position: relative;
+    background-color: rgba(58, 58, 58, 0.459);
 
     width: 30px;
     height: 30px;
     margin: 0;
 }
 
-.so-mw input:checked {
-    background-color: white;
+#mw-enable {
+    background-color: rgb(95, 66, 91);
+}
+
+#mw-disable {
+    background-color: rgb(3, 112, 94);
+}
+
+.so-mw input:checked::after {
+    content: "";
+
+    width: 20px;
+    height: 20px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: black;
+    border-radius: 50%;
 }
 
 .sett-option {
@@ -442,7 +458,7 @@
 }
 
 .customShapeWindow {
-    width: 400px;
+    width: 390px;
     height: fit-content;
 
     background-color: var(--randColor);
@@ -454,6 +470,10 @@
     align-items: center;
 
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
 }
 
 .customShapeWindow::before {
@@ -508,30 +528,67 @@
     left: 15px;
 }
 
+.opt0 {
+    gap: 5px;
+}
+
+.csoo-size {
+    width: 25px;
+    height: 25px;
+
+    background-color: rgb(68, 68, 68);
+    border-radius: 50%;
+    font-size: 14px;
+    mix-blend-mode: difference;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.csoo-size:hover {
+    background-color: rgb(56, 56, 56);
+}
+
 .customShapeWindow .shape {
     margin-top: 50px;
 }
 
-.customShapeWindow .csw-done {
+.customShapeWindow .csw-actions {
+    display: flex;
+    gap: 2px;
+    margin: 10px 0;
+
+    max-height: fit-content;
+
+    border-radius: 100px;
+    overflow: hidden;
+}
+
+.customShapeWindow .csw-done,
+.customShapeWindow .csw-cancel {
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 4px;
 
     font-size: 14px;
     user-select: none;
+    text-align: center;
 
     cursor: pointer;
 
-    padding: 5px 14px;
+    padding: 5px 0;
 
-    margin: 10px 0;
+    width: 60px;
+
 }
 
-.csw-done:hover {
+.csw-done:hover,
+.csw-cancel:hover {
     background-color: rgba(0, 0, 0, 0.3);
 }
 
 .csoo-shape {
-    width: 35px;
+    width: 30px;
     aspect-ratio: 1/1;
     appearance: none;
 
@@ -593,7 +650,7 @@
 #csoo-opacity::-webkit-slider-thumb {
     appearance: none;
 
-    width: 50px;
+    width: 30px;
     height: 30px;
     border-radius: 500px;
 
@@ -603,4 +660,93 @@
     cursor: pointer;
     /* mix-blend-mode: difference; */
     /* filter: invert(1); */
+}
+
+#csoo-text {
+    font-size: 15px;
+    width: 205px;
+    height: 40px;
+
+    padding: 5px 13px;
+
+    background-color: rgb(107, 107, 107);
+    color: black;
+
+    mix-blend-mode: difference;
+
+    border-radius: 100px;
+    border: none;
+    outline: none;
+}
+
+#csoo-text::placeholder {
+    color: rgb(58, 58, 58);
+}
+
+@media only screen and (max-width: 638px) {
+
+    .pbContainer,
+    .settings {
+        width: 100vw;
+        max-height: calc(100% - 110px) !important;
+        height: calc(100% - 110px) !important;
+
+        top: 50px;
+        bottom: 0;
+
+        border-radius: 0;
+    }
+
+    .pbAdd {
+        bottom: 70px;
+    }
+
+    .sideNav {
+        top: unset;
+        bottom: 0;
+        left: 0;
+
+        width: 100vw;
+        height: 60px;
+
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        transform: translateY(0);
+    }
+
+    .sideNav .pageBtn {
+        bottom: 7px;
+    }
+
+    .pageLabel {
+        margin: 0 0 0 15px;
+    }
+
+    .blankBoard {
+        bottom: 25px;
+    }
+
+    .customShapeWindow {
+        width: 100%;
+        height: calc(100% - 110px);
+
+        top: 50px;
+        left: 0;
+        border-radius: 0;
+
+        transform: translate(0);
+    }
+
+    .customShapeOptions {
+        margin-top: auto !important;
+    }
+
+    .csw-actions div {
+        font-size: 20px !important;
+
+        height: fit-content;
+        width: 90px !important;
+    }
 }

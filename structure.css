@@ -89,15 +89,16 @@ body {
 }
 
 .sideNav {
-    width: 60px;
-    height: 190px;
+    width: 70px;
+    height: 100vh;
 
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 30px;
 
-    left: 5px;
-    top: 50%;
-    transform: translateY(-50%);
+    left: 0;
+    top: 0;
 }
 
 .topNav {
@@ -201,4 +202,8 @@ body {
     position: absolute;
     top: 10px;
     left: 0;
+}
+
+.pageLabel::before {
+    content: "Pinboard - ​";
 }

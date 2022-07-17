@@ -19,6 +19,7 @@ window.onload = function () {
 
     pinBoardContainer.style.alignItems = localStorage.getItem('setting-valign');
     pinBoard.innerHTML = savedGridState;
+    movableWidgets();
 }
 
 function makePinBoard() {
@@ -29,16 +30,15 @@ function makePinBoard() {
 }
 
 function backgroundGradientGen() {
-    var randNo = "--baseColor" + (Math.floor(Math.random() * 28));
-    var randColor = "var(" + randNo + ")";
-    var NewColor = LightenDarkenColor(randNo, -40);
+    var colors = ["#acbca4", "#e2dffd", "#ffed68", "#a5f1d3", "#fecf97", "#f4f5a2", "#abe7e4", "#c4acb3", "#a8ebdb", "#7cb3f7", "#ecfba4", "#faf083", "#e3a384", "#e4fb7c", "#f7d099", "#ebbcd0", "#f3e4bb", "#e4d3eb", "#f7f8c7", "#e4dcfb", "#a1a37e", "#74b0f2", "#a1aeb4", "#86bcf6", "#9cbeea", "#c2c6a3", "#d5dbc8"];
+    var randColor = colors[Math.floor(Math.random() * colors.length)];
+    var NewColor = LightenDarkenColor(randColor, -160);
 
-    pinBoard.style.backgroundColor = randColor;
+    // pinBoard.style.backgroundColor = randColor;
     pinBoardContainer.style.backgroundColor = randColor;
     settings.style.backgroundColor = randColor;
-    shapesGrid.style.backgroundColor = randColor;
     widgetsGrid.style.backgroundColor = randColor;
-    document.body.style.backgroundColor = NewColor;
+    document.body.style.backgroundColor = "black";
     pageLabel.style.color = randColor;
     root.style.setProperty('--randColor', randColor);
 }

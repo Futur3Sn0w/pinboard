@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>pinBoard | v0.6.0</title>
+    <title>Pinboard</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='structure.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='elements.css'>
@@ -12,10 +12,15 @@
     <link rel='stylesheet' type='text/css' media='screen' href='fonts.css'>
     <script src="https://kit.fontawesome.com/a1fc6f0f3a.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 
 <body>
     <div class="pbContainer" id="pbCont">
+        <div class="blankBoard">
+            Your pinboard is blank.<br>Click the + button to add a widget.
+        </div>
         <div class="pinBoard" id="pinBoard"></div>
     </div>
 
@@ -31,12 +36,26 @@
             </div>
         </div>
         <div class="customShapeOptions">
+            <div class="cso-opt opt0" data-optName="Size">
+                <div class="csoo-size" data-sizeName="Small" id="csoo-size1" onclick="showSmalls()">
+                    <i class="fa-solid fa-minus"></i>
+                </div>
+                <div class="csoo-size-label">Small</div>
+                <div class="csoo-size" data-sizeName="Wide" id="csoo-size2" onclick="showWides()">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+            </div>
             <div class="cso-opt opt1" data-optName="Shape">
-                <input type="radio" class="csoo-shape" data-shapeNo="1" name="customShape" id="csoo-shape-1" checked>
-                <input type="radio" class="csoo-shape" data-shapeNo="2" name="customShape" id="csoo-shape-2">
-                <input type="radio" class="csoo-shape" data-shapeNo="3" name="customShape" id="csoo-shape-3">
-                <input type="radio" class="csoo-shape" data-shapeNo="4" name="customShape" id="csoo-shape-4">
-                <input type="radio" class="csoo-shape" data-shapeNo="5" name="customShape" id="csoo-shape-5">
+                <input type="radio" class="csoo-shape shape-sml" data-shapeNo="1" name="customShape" id="csoo-shape-1"
+                    checked>
+                <input type="radio" class="csoo-shape shape-sml" data-shapeNo="2" name="customShape" id="csoo-shape-2">
+                <input type="radio" class="csoo-shape shape-sml" data-shapeNo="3" name="customShape" id="csoo-shape-3">
+                <input type="radio" class="csoo-shape shape-sml" data-shapeNo="4" name="customShape" id="csoo-shape-4">
+                <input type="radio" class="csoo-shape shape-sml" data-shapeNo="5" name="customShape" id="csoo-shape-5">
+                <input type="radio" class="csoo-shape shape-med hide" data-shapeNo="6" name="customShape"
+                    id="csoo-shape-6">
+                <input type="radio" class="csoo-shape shape-med hide" data-shapeNo="7" name="customShape"
+                    id="csoo-shape-7">
             </div>
             <div class="cso-opt opt2" data-optName="Opacity">
                 <input type="range" name="customShape" class="csoo-opacity" id="csoo-opacity">
@@ -45,12 +64,15 @@
                 <input type="text" name="customShape" id="csoo-text" placeholder="Shape Text">
             </div>
         </div>
-        <div class="csw-done">Add</div>
+        <div class="csw-actions">
+            <div class="csw-done">Add</div>
+            <div class="csw-cancel">Cancel</div>
+        </div>
     </div>
 
     <div class="settings" id="settings">
         <div class="settingsContainer">
-            <div class="setting">
+            <div class="setting setting-valign">
                 <i class="fa-solid fa-table-list"></i>
                 <div class="settingLabel" data-settingCaption="Change vertical alignment of Pinboard">Pinboard Alignment
                 </div>
@@ -77,24 +99,20 @@
                 <div class="settingLabel" data-settingCaption="Opt-into the movable widgets preview.">Movable Widgets
                 </div>
                 <div class="sett-options so-mw">
-                    <input type="radio" name="movableWidgetOptin" id="mw-enable">
                     <input type="radio" name="movableWidgetOptin" id="mw-disable">
+                    <input type="radio" name="movableWidgetOptin" id="mw-enable">
                 </div>
             </div>
             <div class="setting aboutBox">
                 <i class="fa-solid fa-info-circle"></i>
-                <div class="settingLabel" data-settingCaption="Pinboard is in beta. Be mindful of bugs!">
-                    Pinboard v0.6.0</div>
+                <div class="settingLabel" data-settingCaption="Pinboard is in beta. Beware of bugs!">
+                    Pinboard v0.7.0</div>
             </div>
         </div>
     </div>
 
-    <div class="blankBoard">
-        Your pinboard is blank.<br>Click the + button to add a widget.
-    </div>
-
     <div class="multiBar">
-        <div class="pageLabel" id="pageLabel">Frames (Pinboard)</div>
+        <div class="pageLabel" id="pageLabel">Home</div>
         <div class="pageNav topNav">
             <div class="pageBtn pbEdit" id="pbChangeBgd">
                 <i class="fa-solid fa-edit"></i>
@@ -104,7 +122,7 @@
             </div>
         </div>
         <div class="pageNav sideNav">
-            <div class="pageBtn pageBtn-sel" id="pbShps" data-pageName="Pinboard" onclick="shapesPage()">
+            <div class="pageBtn pageBtn-sel" id="pbShps" data-pageName="Home" onclick="shapesPage()">
                 <i class="fa-solid fa-shapes"></i>
             </div>
 
@@ -128,62 +146,6 @@
         </div>
         <div class="shapeOption shop2" data-optName="Rename">
             <i class="fa-solid fa-pen"></i>
-        </div>
-    </div>
-
-    <div class="shapesGrid" id="shapesGrid">
-        <div class="shape addWidget" id="shape1" data-opacity="">
-            <div class="shapeOptions" id="shapeOptions">
-                <div class="shapeOption shop1">
-                    <i class="fa-solid fa-trash"></i>
-                </div>
-                <div class="shapeOption shop2">
-                    <i class="fa-solid fa-pen"></i>
-                </div>
-            </div>
-        </div>
-        <div class="shape addWidget" id="shape2" data-opacity="">
-            <div class="shapeOptions" id="shapeOptions">
-                <div class="shapeOption shop1">
-                    <i class="fa-solid fa-trash"></i>
-                </div>
-                <div class="shapeOption shop2">
-                    <i class="fa-solid fa-pen"></i>
-                </div>
-            </div>
-        </div>
-        <div class="shape addWidget" id="shape3" data-opacity="">
-            <div class="shapeOptions" id="shapeOptions">
-                <div class="shapeOption shop1">
-                    <i class="fa-solid fa-trash"></i>
-                </div>
-                <div class="shapeOption shop2">
-                    <i class="fa-solid fa-pen"></i>
-                </div>
-            </div>
-        </div>
-        <div class="shape addWidget" id="shape4" data-opacity="">
-            <div class="shapeOptions" id="shapeOptions">
-                <div class="shapeOption shop1">
-                    <i class="fa-solid fa-trash"></i>
-                </div>
-                <div class="shapeOption shop2">
-                    <i class="fa-solid fa-pen"></i>
-                </div>
-            </div>
-        </div>
-        <div class="shape addWidget" id="shape5" data-opacity="">
-            <div class="shapeOptions" id="shapeOptions">
-                <div class="shapeOption shop1">
-                    <i class="fa-solid fa-trash"></i>
-                </div>
-                <div class="shapeOption shop2">
-                    <i class="fa-solid fa-pen"></i>
-                </div>
-            </div>
-        </div>
-        <div class="shape customShape" id="customShapeBtn">
-            <i class="fa-solid fa-plus"></i>
         </div>
     </div>
 
@@ -236,6 +198,7 @@
     <script src='main.js'></script>
 
     <script>
+
         $(document).on("click", ".addWidget", function () {
             $(this).clone().appendTo('.pinBoard').removeClass('addWidget').addClass('pbWidget');
 
@@ -250,6 +213,7 @@
 
             customShapeWindow.style.display = "none";
 
+
             $(".pinBoard").removeClass('defocus');
 
             $('.cswPreview').css('opacity', $('#csoo-opacity').val() + "%");
@@ -257,9 +221,17 @@
 
             $('.cswPreview').clone().appendTo('.pinBoard').removeClass('cswPreview').addClass('pbWidget');
 
-            checkPBLS();
             saveSettings();
+            checkPBLS();
             resetCustomShapeWindow();
+        });
+
+        $(document).on("click", ".csw-cancel", function () {
+            customShapeWindow.style.display = "none";
+            $(".pinBoard").removeClass('defocus');
+
+            resetCustomShapeWindow();
+            checkPBLS();
         });
 
         $(document).on("click", "#customShapeBtn", function () {
@@ -267,9 +239,16 @@
             $(".shapesGrid").removeClass('sgShow');
         });
 
+        $(document).on("mousemove", "body", function () {
+            updateCSW();
+        });
+
         $(document).on("click", ".customShapeWindow", function () {
-            $('.cswPreview').css('opacity', $('#csoo-opacity').val() + "%");
-            $('.cswPreview').attr('data-opacity', $('#csoo-text').val());
+            updateCSW();
+        });
+
+        $(document).on("keyup", "#csoo-text", function () {
+            updateCSW();
         });
 
         $(document).on("click", ".csoo-shape", function () {
@@ -304,9 +283,9 @@
             } else {
                 $('.pinBoard').addClass('pinBoard-EditMode');
                 $('.pbEdit>i').addClass('fa-check').removeClass('fa-edit');
-                $('.shape').removeClass('selectedShape');
                 checkPBLS();
             }
+            $('.shape').removeClass('selectedShape');
         });
 
         $(document).on("click", ".shop1", function () {
@@ -317,10 +296,13 @@
         });
 
         $(document).on("click", ".shop2", function () {
-            $(this).parent().parent().attr('data-opacity', 'vNext');
-
+            // toggleMW();
             localStorage.setItem('pbSet', pinBoard.innerHTML);
             checkPBLS();
+        });
+
+        $(".pbWidget").on("taphold", function () {
+            $('.pbEdit').click();
         });
 
         $(document).on("click", ".pbWidget", function () {
@@ -332,9 +314,9 @@
         });
 
         $(document).on("click", "#rp-reset", function () {
-            alert('Pinboard has been reset. Page will now refresh!')
             localStorage.setItem('pbSet', "");
             document.getElementById('pbCont').style.alignItems = "flex-start";
+            alert('Pinboard has been reset. Page will now refresh!');
             location.reload();
         });
 
@@ -352,11 +334,84 @@
             }
         });
 
+        $(document).on("click", "#mw-disable", function () {
+            localStorage.setItem('movable-optin', 'n');
+            location.reload();
+        });
+
+        $(document).on("click", "#mw-enable", function () {
+            localStorage.setItem('movable-optin', 'y');
+            location.reload();
+        });
+
+        function showSmalls() {
+            $('.shape-sml').removeClass('hide')
+            $('.shape-med').addClass('hide')
+            $('.csoo-size-label').text('Small')
+        }
+
+        function showWides() {
+            $('.shape-med').removeClass('hide')
+            $('.shape-sml').addClass('hide')
+            $('.csoo-size-label').text('Wide')
+        }
+
+        function widgetSize() {
+            $('.csoo-size-label').innerText = $(this).attr('data-sizeName');
+        }
+
+        function updateCSW() {
+            $('.cswPreview').css('opacity', $('#csoo-opacity').val() + "%");
+            $('.cswPreview').attr('data-opacity', $('#csoo-text').val());
+        }
+
+        function toggleMW() {
+            var mw = false;
+            let circle = document.querySelector('.selectedShape');
+
+            const onMouseMove = (e) => {
+                circle.style.left = (e.pageX - 90) + 'px';
+                circle.style.top = (e.pageY - 110) + 'px';
+            };
+
+            if (mw = false) {
+                document.removeEventListener('mousedown', onMouseMove);
+                mw = !mw;
+            } else if (mw = true) {
+                document.addEventListener('mousedown', onMouseMove);
+                mw = !mw;
+            };
+
+        }
+
+        function movableWidgets() {
+            if (localStorage.getItem('movable-optin') == "y") {
+                $('.pbWidget').addClass('movable');
+
+                $('.shop2').removeClass('hide');
+                $('.pinBoard').css('height', "100%");
+                $('.setting-valign').css('display', "none");
+
+                $('#mw-enable').attr('checked', true);
+                $('#mw-disable').attr('checked', false);
+            } else {
+                $('.pbWidget').removeClass('movable');
+
+                $('.shop2').addClass('hide');
+                $('.pinBoard').css('height', "fit-content");
+                $('.setting-valign').css('display', "flex");
+
+                $('#mw-disable').attr('checked', true);
+                $('#mw-enable').attr('checked', false);
+            }
+        }
+
         function resetCustomShapeWindow() {
             $('.cswPreview').attr('id', 'shape1');
             $('#csoo-opacity').val('50');
             $('#csoo-text').val('');
             $('.csoo-shape').prop('checked', false);
+            showSmalls();
         }
 
         function saveSettings() {
@@ -394,7 +449,7 @@
             $(".shapesGrid").removeClass('sgShow');
             $(".pbEdit").removeClass('hide');
 
-            pageLabel.innerText = "Frames (Pinboard)"
+            pageLabel.innerText = "Home"
         }
 
         function settingsPage() {

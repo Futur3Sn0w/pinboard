@@ -23,6 +23,9 @@ https://github.com/Futur3Sn0w/drops/wiki/Updates
 Similar to the above, you can check out the to-do list which includes a handful of features, additions, and changes that will be made to the site. You can also get a sneak peek at ideas that could be experimented with in the future! Check that out here:
 https://github.com/Futur3Sn0w/drops/wiki/To-Do-%7C-Fixes-&-Features
 
+### Widget Template? Almost...
+For the web developers in the audience, a template for creating and adding information-rich and interactive widgets will be available in the future. Due to the earliness of Pinboard, the template will still be a little ways out, but if you'd like to get an early preview, I recommend keeping an eye out on Twitter. ;)
+
 ***
 _More is always to be added; stay tuned!_
 _Beware of bugs!_

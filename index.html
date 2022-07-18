@@ -6,13 +6,15 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Pinboard</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='structure.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='elements.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='widgets.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='fonts.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/navigation.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/pinboard.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/csw.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/mobile.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/settings.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/widgets.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/fonts.css'>
     <script src="https://kit.fontawesome.com/a1fc6f0f3a.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 
@@ -65,49 +67,112 @@
             </div>
         </div>
         <div class="csw-actions">
-            <div class="csw-done">Add</div>
+            <div class="csw-add">Add</div>
             <div class="csw-cancel">Cancel</div>
         </div>
     </div>
 
     <div class="settings" id="settings">
         <div class="settingsContainer">
-            <div class="setting setting-valign">
-                <i class="fa-solid fa-table-list"></i>
-                <div class="settingLabel" data-settingCaption="Change vertical alignment of Pinboard">Pinboard Alignment
-                </div>
-                <div class="sett-options">
-                    <div class="sett-option pb-align" data-pbAlign="flex-start">
-                        <label for="pba-top">Top</label>
-                        <input type="radio" name="pb-align" id="pba-top" checked>
+            <div class="setting ses2">
+                <div class="setting-header">
+                    <i class="fa-solid fa-thumbtack"></i>
+                    <div class="settingLabel" data-settingCaption="Customize Pinboard's look and feel">Pinboard
                     </div>
-                    <div class="sett-option pb-align" data-pbAlign="center">
-                        <label for="pba-center">Center</label>
-                        <input type="radio" name="pb-align" id="pba-center">
+                    <div class="setting-expandBtn">
+                        <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
+
+                <div class="subSettings" data-subNo="2">
+                    <div class="setting sub-setting pbSubSet-valign">
+                        <div class="settingLabel" data-settingCaption="Change the vertical alignment of Pinboard">
+                            Alignment
+                        </div>
+                        <div class="sett-options so-align">
+                            <input class="sett-option pb-align" type="radio" name="pb-align" id="pba-top" checked>
+                            <input class="sett-option pb-align" type="radio" name="pb-align" id="pba-center">
+                        </div>
+                    </div>
+
+                    <div class="setting sub-setting">
+                        <div class="settingLabel" data-settingCaption="Change the background color of Pinboard">
+                            Background
+                        </div>
+                        <div class="sett-option so-button" id="bgdChng" onclick="backgroundGradientGen();">
+                            <i class="fa-solid fa-palette"></i>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="setting">
-                <i class="fa-solid fa-arrows-rotate"></i>
-                <div class="settingLabel" data-settingCaption="Remove all pins and their settings.">Reset Pinboard</div>
-                <div class="sett-options">
-                    <div class="sett-option so-button" id="rp-reset">Reset</div>
+            <div class="setting ses2">
+                <div class="setting-header">
+                    <i class="fa-solid fa-flask"></i>
+                    <div class="settingLabel" data-settingCaption="Test features before they're finished">Labs
+                    </div>
+                    <div class="setting-expandBtn">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <div class="subSettings">
+                    <div class="setting sub-setting">
+                        <div class="settingLabel" data-settingCaption="Free-floating widgets on Pinboard">Movable
+                            Widgets</div>
+                        <div class="toggleSwitch so-mw">
+                            <input class="toggle-disable" type="radio" name="movableWidgetOptin" id="mw-disable">
+                            <input class="toggle-enable" type="radio" name="movableWidgetOptin" id="mw-enable">
+                        </div>
+                    </div>
+                    <div class="setting sub-setting">
+                        <div class="settingLabel" data-settingCaption="New flow for enabling edit-mode">Contextual Edit
+                        </div>
+                        <div class="toggleSwitch so-ce">
+                            <input class="toggle-disable" type="radio" name="contextEditOptin" id="ce-disable" checked>
+                            <input class="toggle-enable" type="radio" name="contextEditOptin" id="ce-enable">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="setting">
-                <i class="fa-solid fa-arrows-up-down-left-right"></i>
-                <div class="settingLabel" data-settingCaption="Opt-into the movable widgets preview.">Movable Widgets
+
+            <div class="setting aboutBox ses2">
+                <div class="setting-header">
+                    <i class="fa-solid fa-info-circle"></i>
+                    <div class="settingLabel" data-settingCaption="Pinboard is in beta. Beware of bugs!">
+                        Pinboard v0.8.0</div>
+                    <div class="setting-expandBtn">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
                 </div>
-                <div class="sett-options so-mw">
-                    <input type="radio" name="movableWidgetOptin" id="mw-disable">
-                    <input type="radio" name="movableWidgetOptin" id="mw-enable">
+
+                <div class="subSettings">
+                    <div class="setting sub-setting">
+                        <div class="settingLabel" data-settingCaption="Info and documentation for Pinboard.">About
+                        </div>
+                        <div class="sett-options so-about">
+                            <a href="https://github.com/Futur3Sn0w/drops/wiki/Updates" class="sett-option so-button"
+                                id="">
+                                <i class="fa-solid fa-download"></i>
+                            </a>
+                            <a href="https://github.com/Futur3Sn0w/drops/wiki/To-Do-%7C-Fixes-%26-Features"
+                                class="sett-option so-button" id="">
+                                <i class="fa-solid fa-list-check"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="setting sub-setting">
+                        <div class="settingLabel" data-settingCaption="Reset Pinboard to its stock settings.">Reset
+                        </div>
+                        <div class="sett-options">
+                            <div class="sett-option so-button" id="rp-reset">Reset</div>
+                        </div>
+                    </div>
                 </div>
+
+
             </div>
-            <div class="setting aboutBox">
-                <i class="fa-solid fa-info-circle"></i>
-                <div class="settingLabel" data-settingCaption="Pinboard is in beta. Beware of bugs!">
-                    Pinboard v0.7.0</div>
-            </div>
+
         </div>
     </div>
 
@@ -116,9 +181,6 @@
         <div class="pageNav topNav">
             <div class="pageBtn pbEdit" id="pbChangeBgd">
                 <i class="fa-solid fa-edit"></i>
-            </div>
-            <div class="pageBtn" id="pbRefresh" onclick="backgroundGradientGen();">
-                <i class="fa-solid fa-palette"></i>
             </div>
         </div>
         <div class="pageNav sideNav">
@@ -196,273 +258,7 @@
     </div>
 
     <script src='main.js'></script>
-
-    <script>
-
-        $(document).on("click", ".addWidget", function () {
-            $(this).clone().appendTo('.pinBoard').removeClass('addWidget').addClass('pbWidget');
-
-            $(".shapesGrid").removeClass('sgShow');
-            $(".pinBoard").removeClass('defocus');
-
-            checkPBLS();
-            saveSettings();
-        });
-
-        $(document).on("click", ".csw-done", function () {
-
-            customShapeWindow.style.display = "none";
-
-
-            $(".pinBoard").removeClass('defocus');
-
-            $('.cswPreview').css('opacity', $('#csoo-opacity').val() + "%");
-            $('.cswPreview').attr('data-opacity', $('#csoo-text').val());
-
-            $('.cswPreview').clone().appendTo('.pinBoard').removeClass('cswPreview').addClass('pbWidget');
-
-            saveSettings();
-            checkPBLS();
-            resetCustomShapeWindow();
-        });
-
-        $(document).on("click", ".csw-cancel", function () {
-            customShapeWindow.style.display = "none";
-            $(".pinBoard").removeClass('defocus');
-
-            resetCustomShapeWindow();
-            checkPBLS();
-        });
-
-        $(document).on("click", "#customShapeBtn", function () {
-            customShapeWindow.style.display = "flex";
-            $(".shapesGrid").removeClass('sgShow');
-        });
-
-        $(document).on("mousemove", "body", function () {
-            updateCSW();
-        });
-
-        $(document).on("click", ".customShapeWindow", function () {
-            updateCSW();
-        });
-
-        $(document).on("keyup", "#csoo-text", function () {
-            updateCSW();
-        });
-
-        $(document).on("click", ".csoo-shape", function () {
-            $('.cswPreview').attr('id', 'shape' + $(this).attr('data-shapeNo'));
-        });
-
-        $(document).on("click", ".sideNav .pageBtn:not(.pageBtn-sel)", function () {
-            $('.pageBtn-sel').removeClass('pageBtn-sel');
-            $(this).addClass('pageBtn-sel');
-        });
-
-        $(document).on("click", ".pbAdd", function () {
-            customShapeWindow.style.display = "flex";
-            $(".shapesGrid").removeClass('sgShow');
-            // $(".shapesGrid").addClass('sgShow');
-            $(".pinBoard").addClass('defocus');
-
-            $('.pbEdit>i').addClass('fa-edit').removeClass('fa-check');
-            $('.pinBoard').removeClass('pinBoard-EditMode');
-            $('.pbEdit').addClass('hide');
-        });
-
-        $(document).on("click", ".defocus", function (event) {
-            event.preventDefault();
-        });
-
-        $(document).on("click", ".pbEdit", function () {
-            if ($('.pinBoard').hasClass('pinBoard-EditMode')) {
-                $('.pinBoard').removeClass('pinBoard-EditMode');
-                $('.pbEdit>i').addClass('fa-edit').removeClass('fa-check');
-                checkPBLS();
-            } else {
-                $('.pinBoard').addClass('pinBoard-EditMode');
-                $('.pbEdit>i').addClass('fa-check').removeClass('fa-edit');
-                checkPBLS();
-            }
-            $('.shape').removeClass('selectedShape');
-        });
-
-        $(document).on("click", ".shop1", function () {
-            $(this).parent().parent().remove();
-
-            localStorage.setItem('pbSet', pinBoard.innerHTML);
-            checkPBLS();
-        });
-
-        $(document).on("click", ".shop2", function () {
-            // toggleMW();
-            localStorage.setItem('pbSet', pinBoard.innerHTML);
-            checkPBLS();
-        });
-
-        $(".pbWidget").on("taphold", function () {
-            $('.pbEdit').click();
-        });
-
-        $(document).on("click", ".pbWidget", function () {
-            if ($('.pinBoard').hasClass('pinBoard-EditMode')) {
-                $('.shape').removeClass('selectedShape');
-                $(this).toggleClass('selectedShape');
-                checkPBLS();
-            }
-        });
-
-        $(document).on("click", "#rp-reset", function () {
-            localStorage.setItem('pbSet', "");
-            document.getElementById('pbCont').style.alignItems = "flex-start";
-            alert('Pinboard has been reset. Page will now refresh!');
-            location.reload();
-        });
-
-        $(document).on("click", ".pb-align", function () {
-            var align = $(this).children('label').text().toLowerCase();
-
-            if (align == "center") {
-                document.getElementById('pbCont').style.alignItems = "center";
-                localStorage.setItem('setting-valign', pinBoardContainer.style.alignItems);
-                saveSettings();
-            } else {
-                document.getElementById('pbCont').style.alignItems = "flex-start";
-                localStorage.setItem('setting-valign', pinBoardContainer.style.alignItems);
-                saveSettings();
-            }
-        });
-
-        $(document).on("click", "#mw-disable", function () {
-            localStorage.setItem('movable-optin', 'n');
-            location.reload();
-        });
-
-        $(document).on("click", "#mw-enable", function () {
-            localStorage.setItem('movable-optin', 'y');
-            location.reload();
-        });
-
-        function showSmalls() {
-            $('.shape-sml').removeClass('hide')
-            $('.shape-med').addClass('hide')
-            $('.csoo-size-label').text('Small')
-        }
-
-        function showWides() {
-            $('.shape-med').removeClass('hide')
-            $('.shape-sml').addClass('hide')
-            $('.csoo-size-label').text('Wide')
-        }
-
-        function widgetSize() {
-            $('.csoo-size-label').innerText = $(this).attr('data-sizeName');
-        }
-
-        function updateCSW() {
-            $('.cswPreview').css('opacity', $('#csoo-opacity').val() + "%");
-            $('.cswPreview').attr('data-opacity', $('#csoo-text').val());
-        }
-
-        function toggleMW() {
-            var mw = false;
-            let circle = document.querySelector('.selectedShape');
-
-            const onMouseMove = (e) => {
-                circle.style.left = (e.pageX - 90) + 'px';
-                circle.style.top = (e.pageY - 110) + 'px';
-            };
-
-            if (mw = false) {
-                document.removeEventListener('mousedown', onMouseMove);
-                mw = !mw;
-            } else if (mw = true) {
-                document.addEventListener('mousedown', onMouseMove);
-                mw = !mw;
-            };
-
-        }
-
-        function movableWidgets() {
-            if (localStorage.getItem('movable-optin') == "y") {
-                $('.pbWidget').addClass('movable');
-
-                $('.shop2').removeClass('hide');
-                $('.pinBoard').css('height', "100%");
-                $('.setting-valign').css('display', "none");
-
-                $('#mw-enable').attr('checked', true);
-                $('#mw-disable').attr('checked', false);
-            } else {
-                $('.pbWidget').removeClass('movable');
-
-                $('.shop2').addClass('hide');
-                $('.pinBoard').css('height', "fit-content");
-                $('.setting-valign').css('display', "flex");
-
-                $('#mw-disable').attr('checked', true);
-                $('#mw-enable').attr('checked', false);
-            }
-        }
-
-        function resetCustomShapeWindow() {
-            $('.cswPreview').attr('id', 'shape1');
-            $('#csoo-opacity').val('50');
-            $('#csoo-text').val('');
-            $('.csoo-shape').prop('checked', false);
-            showSmalls();
-        }
-
-        function saveSettings() {
-            localStorage.setItem('pbSet', pinBoard.innerHTML);
-        }
-
-        function checkPBLS() {
-            if (localStorage.getItem('pbSet') == "") {
-                $(".blankBoard").removeClass('hide');
-                $('.pbEdit').addClass('hide');
-                $('.pinBoard').removeClass('pinBoard-EditMode');
-                $('.pbEdit>i').addClass('fa-edit').removeClass('fa-check');
-            } else {
-                $(".blankBoard").addClass('hide');
-                $('.pbEdit').removeClass('hide');
-            }
-        }
-
-        function widgetsPage() {
-            widgetsGrid.style.display = "flex";
-            settings.style.display = "none";
-            pinBoard.style.display = "none";
-
-            $(".shapesGrid").removeClass('sgShow');
-            $(".pbEdit").addClass('hide');
-
-            pageLabel.innerText = "Widgets (DEMO)"
-        }
-
-        function shapesPage() {
-            pinBoard.style.display = "flex";
-            settings.style.display = "none";
-            widgetsGrid.style.display = "none";
-
-            $(".shapesGrid").removeClass('sgShow');
-            $(".pbEdit").removeClass('hide');
-
-            pageLabel.innerText = "Home"
-        }
-
-        function settingsPage() {
-            settings.style.display = "flex";
-            widgetsGrid.style.display = "none";
-            pinBoard.style.display = "none";
-
-            $(".shapesGrid").removeClass('sgShow');
-            $(".pbEdit").addClass('hide');
-
-            pageLabel.innerText = "Settings"
-        }
-    </script>
+    <script src='widgets.js'></script>
 
 </body>
 

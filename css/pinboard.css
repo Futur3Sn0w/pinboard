@@ -1,0 +1,291 @@
+.pbContainer {
+    width: calc(100vw - 70px);
+    height: calc(100% - 50px);
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    border-radius: 16px 0 0 0;
+    overflow: hidden;
+
+    display: flex;
+}
+
+.pinBoard {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    overflow: hidden;
+
+    width: 100%;
+    /* min-height: 100%; */
+
+    transition: transform .3s, opacity .3s, filter .2s;
+
+    background-color: inherit;
+}
+
+.pinBoard .shape {
+    border-radius: 16px;
+    cursor: default;
+}
+
+.pinBoard.defocus {
+    /* transform: scale(.95); */
+    opacity: .8;
+    filter: blur(8px);
+
+    mix-blend-mode: normal;
+}
+
+.pinBoard-EditMode .shape {
+    background-color: rgba(100, 100, 100, 0.3) !important;
+    transform: scale(0.85);
+    cursor: grab;
+}
+
+.pinBoard-EditMode .shape.selectedShape {
+    background-color: rgba(100, 100, 100, 0.3) !important;
+    transform: scale(0.95);
+    border: 3px solid rgb(124, 124, 124);
+}
+
+.customShape {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: rgb(58, 58, 58);
+    background-color: rgb(124, 124, 124);
+
+    border-radius: 50%;
+    transform: scale(0.6);
+}
+
+.customShape::before,
+.customShape::after {
+    display: none !important;
+}
+
+/* Widgets/Pins/Shapes/etc */
+
+.shape {
+    min-width: 130px;
+    min-height: 130px;
+    max-height: 130px;
+
+    mix-blend-mode: difference;
+    font-size: 35px;
+    cursor: pointer;
+
+    position: relative;
+    /* overflow: hidden; */
+
+    transition: border .15s, background-color .05s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shape::before {
+    content: "";
+    min-width: 100%;
+    min-height: 130px;
+
+    background-size: calc(100% - 15px);
+    background-position: 50%;
+    background-repeat: no-repeat;
+
+    filter: brightness(100) saturate(100) contrast(0);
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shape::after {
+    content: attr(data-opacity);
+
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 23px;
+
+}
+
+.movable {
+    position: absolute;
+}
+
+.pinBoard-EditMode .selectedShape,
+.addWidget:hover,
+.customShape:hover {
+    background-color: rgba(100, 100, 100, 0.3) !important;
+}
+
+/* Shape specifics */
+
+#shape1::before {
+    background-image: url('../shapes/shape1.svg');
+}
+
+#shape2::before {
+    background-image: url('../shapes/shape2.svg');
+}
+
+#shape3::before {
+    background-image: url('../shapes/shape3.svg');
+}
+
+#shape4::before {
+    background-image: url('../shapes/shape4.svg');
+}
+
+#shape5::before {
+    background-image: url('../shapes/shape5.svg');
+}
+
+#shape6::before {
+    background-image: url('../shapes/shape6.svg');
+}
+
+#shape7::before {
+    background-image: url('../shapes/shape7.svg');
+}
+
+#shape6,
+#shape7 {
+    width: 260px;
+}
+
+/* Shape options (Click on a shape in edit-mode) */
+
+.shapeOptions {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgb(58, 58, 58);
+
+    mix-blend-mode: difference;
+
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.pinBoard-EditMode .pbWidget .shapeOptions {
+    opacity: 0;
+}
+
+.pinBoard-EditMode .selectedShape .shapeOptions {
+    opacity: 1;
+    display: flex;
+}
+
+.shapeOption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    background-color: rgb(138, 138, 138);
+    border-radius: 4px;
+
+    width: 40px;
+    height: 40px;
+
+    cursor: pointer;
+}
+
+.shapeOption i {
+    font-size: 20px;
+}
+
+.shapeOption:hover {
+    background-color: rgb(180, 180, 180);
+}
+
+/* Animations (Currently disabled) */
+
+@keyframes tiltLoop1 {
+    from {
+        transform: rotate(-15deg);
+    }
+
+    to {
+        transform: rotate(15deg);
+    }
+}
+
+@keyframes tiltLoop2 {
+    from {
+        transform: scale(0.95) rotate(-3deg);
+    }
+
+    to {
+        transform: scale(0.95) rotate(3deg);
+    }
+}
+
+@keyframes floatLoop1 {
+    from {
+        transform: translateY(-7px);
+    }
+
+    to {
+        transform: translateY(7px);
+    }
+}
+
+@keyframes infiniteRotate {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes cornerRotate1 {
+    0% {
+        transform: rotate(0);
+        border-radius: 15%;
+    }
+
+    25% {
+        transform: rotate(45deg);
+        border-radius: 50%;
+    }
+
+    50% {
+        transform: rotate(90deg);
+        border-radius: 15%;
+    }
+
+    75% {
+        transform: rotate(120deg);
+        border-radius: 50%;
+    }
+
+    100% {
+        transform: rotate(180deg);
+        border-radius: 15%;
+    }
+}

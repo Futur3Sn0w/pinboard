@@ -4,15 +4,15 @@
 
 @font-face {
     font-family: GST-Reg;
-    src: url(gst/reg.ttf);
+    src: url(../gst/reg.ttf);
 }
 
 @font-face {
     font-family: GST-Med;
-    src: url(gst/med.ttf);
+    src: url(../gst/med.ttf);
 }
 
 @font-face {
     font-family: GST-Bold;
-    src: url(gst/bold.ttf);
+    src: url(../gst/bold.ttf);
 }

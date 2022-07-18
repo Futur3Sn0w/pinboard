@@ -1,0 +1,280 @@
+.settings {
+    display: none;
+    align-items: stretch;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    width: calc(100vw - 70px);
+    height: calc(100vh - 50px);
+
+    user-select: none;
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+
+    border-radius: 16px 0 0 0;
+    overflow: hidden;
+}
+
+.settingsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 15px;
+}
+
+.setting {
+    width: 100%;
+    max-width: 450px;
+    height: 70px;
+
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 14px;
+
+    position: relative;
+    overflow: hidden;
+
+    transition: height .2s;
+
+    display: flex;
+    align-items: center;
+    padding: 0 50px 0 20px;
+}
+
+.setting-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 10px 0 20px;
+}
+
+.subSettings {
+    position: absolute;
+    left: 0;
+    top: 70px;
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.sub-setting {
+    border-radius: 0;
+    padding: 0 0 0 10px;
+
+    height: 60px;
+
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sub-setting .settingLabel {
+    font-size: 15px;
+}
+
+.setting-expandBtn {
+    height: 50px;
+    aspect-ratio: 1/1;
+
+    margin-left: auto;
+
+    border-radius: 10px;
+    background-color: rgb(100, 100, 100);
+    mix-blend-mode: difference;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.setting-expandBtn:hover {
+    background-color: rgb(87, 87, 87);
+}
+
+.setting-expandedSetting .setting-expandBtn i {
+    transform: rotate(180deg);
+}
+
+.aboutBox .setting-header .setting-expandBtn {
+    transform: rotate(180deg);
+}
+
+.setting-expandedSetting {
+    align-items: flex-start;
+    padding: 25px 50px 0 20px;
+}
+
+.ses1.setting-expandedSetting {
+    height: 130px;
+}
+
+.ses2.setting-expandedSetting {
+    height: 191px;
+}
+
+.aboutBox {
+    margin-top: auto;
+}
+
+.settingLabel {
+    font-size: 17px;
+    font-weight: 600;
+
+    margin-left: 10px;
+    transform: translateY(-8px);
+
+    position: relative;
+}
+
+.settingLabel::after {
+    content: attr(data-settingCaption);
+    font-size: 12px;
+    font-weight: 400;
+
+    width: max-content;
+
+    position: absolute;
+    bottom: -14px;
+    left: 0;
+}
+
+.setting i {
+    font-size: 20px;
+}
+
+.sett-options {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    margin: 0 20px 0 auto;
+}
+
+.so-about {
+    flex-direction: row;
+    gap: 3px
+}
+
+.so-about a {
+    appearance: none;
+    color: black;
+    font-size: 12px !important;
+}
+
+.so-button i {
+    font-size: 12px !important;
+}
+
+.toggleSwitch {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+
+    overflow: hidden;
+    border-radius: 100px;
+    /* mix-blend-mode: difference; */
+
+    margin-left: auto;
+    margin-right: 15px;
+}
+
+.toggleSwitch input {
+    appearance: none;
+    position: relative;
+    background-color: rgba(58, 58, 58, 0.459);
+
+    width: 30px;
+    height: 30px;
+    margin: 0;
+}
+
+.toggle-enable {
+    background-color: rgb(95, 66, 91);
+}
+
+.toggle-disable {
+    background-color: rgb(3, 112, 94);
+}
+
+.toggleSwitch input:checked::after {
+    content: "";
+
+    width: 20px;
+    height: 20px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: black;
+    border-radius: 50%;
+}
+
+.sett-option {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.so-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 6px 13px;
+
+    border-radius: 500px;
+}
+
+.so-button:hover,
+.pb-align:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+#bgdChng {
+    margin-left: auto;
+    margin-right: 15px;
+}
+
+.so-align {
+    border-radius: 100px;
+
+    flex-direction: row;
+
+    gap: 2px !important;
+    mix-blend-mode: difference;
+
+    width: min-content;
+
+    overflow: hidden;
+}
+
+.pb-align {
+    appearance: none;
+
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    cursor: pointer;
+
+    width: 30px;
+    height: 30px;
+
+    padding: 3px 5px;
+    margin: 0;
+}
+
+.pb-align:checked {
+    background-color: rgb(102, 102, 102);
+}

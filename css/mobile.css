@@ -1,0 +1,79 @@
+@media only screen and (max-width: 638px) {
+    .shape {
+        min-width: 120px;
+        min-height: 120px;
+        max-height: 120px;
+    }
+
+    .pbContainer,
+    .settings {
+        width: 100vw !important;
+        max-height: calc(100% - 110px) !important;
+        height: calc(100% - 110px) !important;
+
+        top: 50px;
+        bottom: 0;
+
+        border-radius: 16px !important;
+    }
+
+    .pbAdd {
+        bottom: 70px;
+    }
+
+    .sideNav {
+        top: unset;
+        bottom: 0;
+        left: 0;
+
+        width: 100vw;
+        height: 60px;
+
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        transform: translateY(0);
+    }
+
+    .sideNav .pageBtn {
+        bottom: 7px;
+    }
+
+    .pageLabel {
+        margin: 0 0 0 15px;
+    }
+
+    .blankBoard {
+        bottom: 25px;
+    }
+
+    .customShapeWindow {
+        width: 100%;
+        height: calc(100% - 110px);
+
+        top: 50px;
+        left: 0;
+        border-radius: 16px;
+
+        transform: translate(0);
+    }
+
+    .customShapeOptions {
+        margin-top: auto !important;
+    }
+
+    .csw-actions div {
+        font-size: 20px !important;
+
+        height: fit-content;
+        width: 90px !important;
+    }
+
+    .settingsContainer {
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+    }
+}

@@ -188,6 +188,19 @@ body {
     opacity: 1;
 }
 
+#pbRefresh {
+    width: 50px;
+    height: 40px;
+
+    border-radius: 8px;
+    background-color: var(--randColor);
+    color: black;
+    opacity: 1;
+
+    margin-left: auto;
+    margin-right: 20px;
+}
+
 .pageLabel {
     display: flex;
     align-items: center;

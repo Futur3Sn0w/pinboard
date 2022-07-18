@@ -1,0 +1,242 @@
+.customShapeWindow {
+    width: 390px;
+    height: fit-content;
+
+    background-color: var(--randColor);
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.185);
+    border-radius: 14px;
+
+    display: none;
+    flex-direction: column;
+    align-items: center;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.customShapeWindow::before {
+    content: "Custom Shape";
+
+    font-size: 22px;
+    font-weight: 600;
+
+    position: absolute;
+    top: 20px;
+    left: 15px;
+}
+
+.customShapeOptions {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2px;
+
+    width: 95%;
+    height: fit-content;
+
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.customShapeOptions .cso-opt {
+    background-color: rgba(0, 0, 0, 0.164);
+    border-radius: 7px;
+
+    width: 100%;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    position: relative;
+
+    padding: 7px 14px;
+}
+
+.cso-opt::before {
+    content: attr(data-optName);
+    color: rgb(117, 117, 117);
+    mix-blend-mode: difference;
+
+    font-size: 18px;
+
+    position: absolute;
+    left: 15px;
+}
+
+.opt0 {
+    gap: 2px;
+}
+
+.csoo-size {
+    width: 36px;
+    height: 36px;
+
+    background-color: rgb(68, 68, 68);
+    border-radius: 5px 50% 50% 5px;
+    font-size: 14px;
+    mix-blend-mode: difference;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#csoo-size1 {
+    transform: rotate(180deg);
+}
+
+.csoo-size:hover {
+    background-color: rgb(56, 56, 56);
+}
+
+.csoo-size-label {
+    background-color: rgb(102, 102, 102);
+    border-radius: 5px;
+    mix-blend-mode: difference;
+    padding: 8px 12px;
+}
+
+.customShapeWindow .shape {
+    margin-top: 50px;
+}
+
+.customShapeWindow .csw-actions {
+    display: flex;
+    gap: 2px;
+    margin: 10px 0;
+
+    max-height: fit-content;
+
+    border-radius: 100px;
+    overflow: hidden;
+}
+
+.customShapeWindow .csw-add,
+.customShapeWindow .csw-cancel {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+
+    font-size: 18px;
+    user-select: none;
+    text-align: center;
+
+    cursor: pointer;
+
+    padding: 10px 0;
+
+    width: 185px;
+
+}
+
+.customShapeWindow .csw-cancel {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.csw-add:hover,
+.csw-cancel:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.csoo-shape {
+    width: 30px;
+    aspect-ratio: 1/1;
+    appearance: none;
+
+    border: 2px solid rgb(95, 95, 95);
+    border-radius: 100px;
+
+    position: relative;
+    mix-blend-mode: difference;
+}
+
+.csoo-shape:checked::before {
+    content: "";
+    width: 20px;
+    aspect-ratio: 1/1;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+    background-color: rgb(136, 136, 136);
+}
+
+#csoo-opacity::before {
+    content: "";
+    width: 210px;
+    height: 40px;
+
+    position: absolute;
+    bottom: -17px;
+    left: -5px;
+    z-index: -1;
+
+    background-color: rgb(146, 146, 146);
+    border-radius: 500px;
+}
+
+#csoo-opacity {
+    width: 200px;
+    height: 5px;
+
+    border: none;
+    border-radius: 100px;
+
+    appearance: none;
+    position: relative;
+    z-index: 1;
+
+    mix-blend-mode: difference;
+}
+
+#csoo-opacity::-webkit-slider-runnable-track {
+    background-color: rgb(87, 87, 87);
+    height: 5px;
+    border-radius: 100px;
+}
+
+#csoo-opacity::-webkit-slider-thumb {
+    appearance: none;
+
+    width: 30px;
+    height: 30px;
+    border-radius: 500px;
+
+    transform: translateY(-13px);
+
+    background: #1a1a1a;
+    cursor: pointer;
+    /* mix-blend-mode: difference; */
+    /* filter: invert(1); */
+}
+
+#csoo-text {
+    font-size: 15px;
+    width: 205px;
+    height: 40px;
+
+    padding: 5px 13px;
+
+    background-color: rgb(107, 107, 107);
+    color: black;
+
+    mix-blend-mode: difference;
+
+    border-radius: 100px;
+    border: none;
+    outline: none;
+}
+
+#csoo-text::placeholder {
+    color: rgb(58, 58, 58);
+}

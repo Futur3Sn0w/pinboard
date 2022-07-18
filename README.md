@@ -6,7 +6,7 @@ The idea behind Pinboard is to make it easy to create glancable pieces of inform
 
 With Pinboard, everything you do is saved automatically, so you don't have to worry about saving your work. Once you add a pin to your Pinboard, it's automatically saved for the next time you visit!
 ***
-## Hey look, a person...
+## Oh, you're still here!
 Pinboard is still in the (very) early stages. It works well right now for creating notes, but that's about it. The ultimate goal is to build it out into a web app with interactable widgets, a repository for adding widgets made by web developers, and more.
 
 Currently, there are a few cool things to check out, which is why I went ahead and added this now haha.

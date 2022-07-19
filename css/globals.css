@@ -1,0 +1,98 @@
+:root {
+    --flatLine: transparent;
+    --borderColor: white;
+
+    --baseColor0: #acbca4;
+    --baseColor1: #e2dffd;
+    --baseColor2: #ffed68;
+    --baseColor3: #a5f1d3;
+    --baseColor4: #fecf97;
+    --baseColor5: #f4f5a2;
+    --baseColor6: #abe7e4;
+    --baseColor7: #c4acb3;
+    --baseColor8: #a8ebdb;
+    --baseColor9: #7cb3f7;
+    --baseColor10: #ecfba4;
+    --baseColor11: #faf083;
+    --baseColor12: #e3a384;
+    --baseColor13: #e4fb7c;
+    --baseColor14: #f7d099;
+    --baseColor15: #ebbcd0;
+    --baseColor16: #f3e4bb;
+    --baseColor17: #e4d3eb;
+    --baseColor18: #818d76;
+    --baseColor19: #f7f8c7;
+    --baseColor20: #e4dcfb;
+    --baseColor21: #a1a37e;
+    --baseColor22: #74b0f2;
+    --baseColor23: #a1aeb4;
+    --baseColor24: #86bcf6;
+    --baseColor25: #9cbeea;
+    --baseColor26: #c2c6a3;
+    --baseColor27: #d5dbc8;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    padding-top: 40px;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+
+    background-color: black;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.blankBoard {
+    position: absolute;
+    left: 50%;
+    bottom: 15px;
+    transform: translateX(-50%);
+
+    width: 25ch;
+    box-sizing: content-box;
+
+    font-size: 16px;
+    font-family: GST-Med;
+    font-weight: 400;
+    color: rgb(189, 189, 189);
+
+    background-color: rgb(44, 44, 44);
+    mix-blend-mode: difference;
+    border-radius: 100px;
+    padding: 10px 25px;
+}
+
+.hide {
+    display: none !important;
+}
+
+.contentView {
+    width: calc(100vw - 70px);
+    height: 100vh;
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+
+    border-radius: 0;
+    overflow: hidden;
+
+    padding-top: 50px;
+}
+
+.contentView.rc {
+    border-radius: 16px 0 0 16px;
+}

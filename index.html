@@ -13,13 +13,14 @@
     <link rel='stylesheet' type='text/css' media='screen' href='css/settings.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/widgets.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/fonts.css'>
+    <link rel="stylesheet" href="css/globals.css">
     <script src="https://kit.fontawesome.com/a1fc6f0f3a.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 
 <body>
-    <div class="pbContainer" id="pbCont">
+    <div class="pbContainer contentView" id="pbCont">
         <div class="blankBoard">
             Your pinboard is blank.<br>Click the + button to add a widget.
         </div>
@@ -28,14 +29,6 @@
 
     <div class="customShapeWindow" id="customShapeWindow">
         <div class="shape cswPreview" id="shape1" data-opacity="">
-            <div class="shapeOptions" id="shapeOptions">
-                <div class="shapeOption shop1">
-                    <i class="fa-solid fa-trash"></i>
-                </div>
-                <div class="shapeOption shop2">
-                    <i class="fa-solid fa-pen"></i>
-                </div>
-            </div>
         </div>
         <div class="customShapeOptions">
             <div class="cso-opt opt0" data-optName="Size">
@@ -72,9 +65,9 @@
         </div>
     </div>
 
-    <div class="settings" id="settings">
+    <div class="settings contentView" id="settings">
         <div class="settingsContainer">
-            <div class="setting ses2">
+            <div class="setting ses1">
                 <div class="setting-header">
                     <i class="fa-solid fa-thumbtack"></i>
                     <div class="settingLabel" data-settingCaption="Customize Pinboard's look and feel">Pinboard
@@ -84,8 +77,8 @@
                     </div>
                 </div>
 
-                <div class="subSettings" data-subNo="2">
-                    <div class="setting sub-setting pbSubSet-valign">
+                <div class="subSettings">
+                    <div class="setting sub-setting pbSubSet-valign hide">
                         <div class="settingLabel" data-settingCaption="Change the vertical alignment of Pinboard">
                             Alignment
                         </div>
@@ -106,10 +99,10 @@
                 </div>
 
             </div>
-            <div class="setting ses2">
+            <div class="setting ses4">
                 <div class="setting-header">
                     <i class="fa-solid fa-flask"></i>
-                    <div class="settingLabel" data-settingCaption="Test features before they're finished">Labs
+                    <div class="settingLabel" data-settingCaption="Toggle experimental features">Labs
                     </div>
                     <div class="setting-expandBtn">
                         <i class="fa-solid fa-chevron-down"></i>
@@ -133,6 +126,25 @@
                             <input class="toggle-enable" type="radio" name="contextEditOptin" id="ce-enable">
                         </div>
                     </div>
+                    <div class="setting sub-setting">
+                        <div class="settingLabel" data-settingCaption="Enable rounded corners on contentView(s)">Rounded
+                            Corners
+                        </div>
+                        <div class="toggleSwitch so-rc">
+                            <input class="toggle-disable" type="radio" name="roundedCornersOptin" id="rc-disable"
+                                checked>
+                            <input class="toggle-enable" type="radio" name="roundedCornersOptin" id="rc-enable">
+                        </div>
+                    </div>
+                    <div class="setting sub-setting">
+                        <div class="settingLabel" data-settingCaption="Add arrows to move widgets' order">Reorder
+                            Widgets
+                        </div>
+                        <div class="toggleSwitch so-rc">
+                            <input class="toggle-disable" type="radio" name="reorderOptin" id="ro-disable" checked>
+                            <input class="toggle-enable" type="radio" name="reorderOptin" id="ro-enable">
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -140,7 +152,7 @@
                 <div class="setting-header">
                     <i class="fa-solid fa-info-circle"></i>
                     <div class="settingLabel" data-settingCaption="Pinboard is in beta. Beware of bugs!">
-                        Pinboard v0.8.0</div>
+                        Pinboard v0.9.0</div>
                     <div class="setting-expandBtn">
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
@@ -176,25 +188,23 @@
         </div>
     </div>
 
-    <div class="multiBar">
-        <div class="pageLabel" id="pageLabel">Home</div>
-        <div class="pageNav topNav">
-            <div class="pageBtn pbEdit" id="pbChangeBgd">
-                <i class="fa-solid fa-edit"></i>
-            </div>
+    <div class="pageLabel" id="pageLabel">Home</div>
+    <div class="pageNav topNav">
+        <div class="pageBtn pbEdit" id="pbChangeBgd">
+            <i class="fa-solid fa-edit"></i>
         </div>
-        <div class="pageNav sideNav">
-            <div class="pageBtn pageBtn-sel" id="pbShps" data-pageName="Home" onclick="shapesPage()">
-                <i class="fa-solid fa-shapes"></i>
-            </div>
+    </div>
+    <div class="pageNav sideNav">
+        <div class="pageBtn pageBtn-sel" id="pbShps" data-pageName="Home" onclick="shapesPage()">
+            <i class="fa-solid fa-shapes"></i>
+        </div>
 
-            <div class="pageBtn" id="pbWids" data-pageName="Widgets" style="display: none;" onclick="widgetsPage()">
-                <i class="fa-solid fa-sliders"></i>
-            </div>
+        <div class="pageBtn" id="pbWids" data-pageName="Widgets" style="display: none;" onclick="widgetsPage()">
+            <i class="fa-solid fa-sliders"></i>
+        </div>
 
-            <div class="pageBtn" id="pbSettings" data-pageName="Settings" onclick="settingsPage()">
-                <i class="fa-solid fa-gear"></i>
-            </div>
+        <div class="pageBtn" id="pbSettings" data-pageName="Settings" onclick="settingsPage()">
+            <i class="fa-solid fa-gear"></i>
         </div>
     </div>
 
@@ -203,11 +213,14 @@
     </div>
 
     <div class="shapeOptions" id="shapeOptions">
+        <div class="shapeOption so-move" id="so-moveLeft">
+            <i class="fa-solid fa-chevron-left"></i>
+        </div>
         <div class="shapeOption shop1" data-optName="Remove">
             <i class="fa-solid fa-trash"></i>
         </div>
-        <div class="shapeOption shop2" data-optName="Rename">
-            <i class="fa-solid fa-pen"></i>
+        <div class="shapeOption so-move" id="so-moveRight">
+            <i class="fa-solid fa-chevron-right"></i>
         </div>
     </div>
 

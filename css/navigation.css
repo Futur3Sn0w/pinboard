@@ -1,83 +1,3 @@
-:root {
-    --flatLine: transparent;
-    --borderColor: white;
-
-    --baseColor0: #acbca4;
-    --baseColor1: #e2dffd;
-    --baseColor2: #ffed68;
-    --baseColor3: #a5f1d3;
-    --baseColor4: #fecf97;
-    --baseColor5: #f4f5a2;
-    --baseColor6: #abe7e4;
-    --baseColor7: #c4acb3;
-    --baseColor8: #a8ebdb;
-    --baseColor9: #7cb3f7;
-    --baseColor10: #ecfba4;
-    --baseColor11: #faf083;
-    --baseColor12: #e3a384;
-    --baseColor13: #e4fb7c;
-    --baseColor14: #f7d099;
-    --baseColor15: #ebbcd0;
-    --baseColor16: #f3e4bb;
-    --baseColor17: #e4d3eb;
-    --baseColor18: #818d76;
-    --baseColor19: #f7f8c7;
-    --baseColor20: #e4dcfb;
-    --baseColor21: #a1a37e;
-    --baseColor22: #74b0f2;
-    --baseColor23: #a1aeb4;
-    --baseColor24: #86bcf6;
-    --baseColor25: #9cbeea;
-    --baseColor26: #c2c6a3;
-    --baseColor27: #d5dbc8;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    padding-top: 40px;
-
-    width: 100vw;
-    height: 100vh;
-
-    overflow: hidden;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2em;
-
-    background-color: black;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-.blankBoard {
-    position: absolute;
-    left: 50%;
-    bottom: 15px;
-    transform: translateX(-50%);
-
-    width: 25ch;
-    box-sizing: content-box;
-
-    font-size: 16px;
-    font-family: GST-Med;
-    font-weight: 400;
-    color: rgb(189, 189, 189);
-
-    background-color: rgb(44, 44, 44);
-    mix-blend-mode: difference;
-    border-radius: 100px;
-    padding: 10px 25px;
-}
-
-.hide {
-    display: none !important;
-}
-
 .pageNav {
     display: flex;
     align-items: center;
@@ -85,7 +5,7 @@ body {
     overflow: hidden;
 
     position: absolute;
-
+    z-index: 1;
 }
 
 .sideNav {
@@ -104,6 +24,7 @@ body {
 .topNav {
     width: fit-content;
     height: 40px;
+    mix-blend-mode: difference;
 
     border-radius: 500px;
     gap: 2px;
@@ -151,20 +72,27 @@ body {
 }
 
 .pbAdd {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
 
-    border-radius: 100px;
+    border-radius: 40%;
     mix-blend-mode: difference;
     background-color: rgb(68, 68, 68);
     color: black;
     opacity: 1 !important;
 
+    box-shadow: 0 6px 10px 0 rgb(65, 65, 65);
+
     position: absolute;
-    bottom: 5px;
-    right: 5px;
+    bottom: 10px;
+    right: 10px;
+    z-index: 100;
 
     font-size: 25px;
+}
+
+.pbAdd:hover {
+    background-color: rgb(49, 49, 49);
 }
 
 .topNav .pageBtn {
@@ -172,14 +100,13 @@ body {
     height: 40px;
 
     border-radius: 8px;
-    background-color: var(--randColor);
+    background-color: rgb(88, 88, 88);
     color: black;
     opacity: 1;
 }
 
-.topNav .pageBtn:hover,
-.pbAdd:hover {
-    background-color: white;
+.topNav .pageBtn:hover {
+    background-color: rgb(41, 41, 41);
 }
 
 .pageBtn-sel {
@@ -207,16 +134,16 @@ body {
     justify-content: center;
 
     font-family: 'GST-Med';
-    font-weight: 400;
-    font-size: 23px;
+    font-weight: 500;
+    font-size: 20px;
+
+    color: rgb(121, 121, 121);
+    mix-blend-mode: difference;
 
     margin: 0 0 0 75px;
 
     position: absolute;
-    top: 10px;
-    left: 0;
-}
-
-.pageLabel::before {
-    content: "Pinboard - ​";
+    top: 15px;
+    left: 15px;
+    z-index: 100;
 }

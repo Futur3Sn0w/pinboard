@@ -1,14 +1,4 @@
 .pbContainer {
-    width: calc(100vw - 70px);
-    height: calc(100% - 50px);
-
-    position: absolute;
-    bottom: 0;
-    right: 0;
-
-    border-radius: 16px 0 0 0;
-    overflow: hidden;
-
     display: flex;
 }
 
@@ -183,7 +173,7 @@
 
     background-color: rgb(58, 58, 58);
 
-    mix-blend-mode: difference;
+    /* mix-blend-mode: difference; */
 
     border-radius: 14px;
     overflow: hidden;
@@ -219,6 +209,16 @@
 
 .shapeOption:hover {
     background-color: rgb(180, 180, 180);
+}
+
+.shop1 {
+    margin: 0 auto;
+}
+
+.so-move {
+    border-radius: 0;
+
+    height: 100%;
 }
 
 /* Animations (Currently disabled) */

@@ -6,7 +6,7 @@
     gap: 5px;
 
     width: calc(100vw - 70px);
-    height: calc(100vh - 50px);
+    height: 100vh;
 
     user-select: none;
 
@@ -15,7 +15,9 @@
     right: 0;
     z-index: 1;
 
-    border-radius: 16px 0 0 0;
+    padding-top: 50px;
+
+    border-radius: 16px 16px 0 0;
     overflow: hidden;
 }
 
@@ -126,6 +128,14 @@
 
 .ses2.setting-expandedSetting {
     height: 191px;
+}
+
+.ses3.setting-expandedSetting {
+    height: 252px;
+}
+
+.ses4.setting-expandedSetting {
+    height: 313px;
 }
 
 .aboutBox {

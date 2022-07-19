@@ -6,21 +6,19 @@ var pageLabel = document.getElementById('pageLabel');
 
 var customShapeWindow = document.getElementById('customShapeWindow');
 
-var gridWidth = Math.round(window.innerWidth / 130) - 1;
-var gridHeight = Math.round(window.innerHeight / 130);
-
 var savedGridState = localStorage.getItem('pbSet');
 var root = document.querySelector(':root');
 
 window.onload = function () {
     backgroundGradientGen();
-    // makePinBoard();
     checkPBLS();
 
     pinBoardContainer.style.alignItems = localStorage.getItem('setting-valign');
     pinBoard.innerHTML = savedGridState;
     movableWidgets();
     contextEdit();
+    roundedCorners();
+    reorderWidgets();
 }
 
 $(document).on("click", ".addWidget", function () {
@@ -38,11 +36,13 @@ $(document).on("click", ".csw-add", function () {
     customShapeWindow.style.display = "none";
 
     $(".pinBoard").removeClass('defocus');
+    $('.pbAdd').removeClass('hide');
 
     $('.cswPreview').css('opacity', $('#csoo-opacity').val() + "%");
     $('.cswPreview').attr('data-opacity', $('#csoo-text').val());
 
     $('.cswPreview').clone().appendTo('.pinBoard').removeClass('cswPreview').addClass('pbWidget').addClass('contextEditPBW');
+    $('.shapeOptions').clone().appendTo('.pbWidget');
 
     saveSettings();
     checkPBLS();
@@ -52,6 +52,7 @@ $(document).on("click", ".csw-add", function () {
 $(document).on("click", ".csw-cancel", function () {
     customShapeWindow.style.display = "none";
     $(".pinBoard").removeClass('defocus');
+    $('.pbAdd').removeClass('hide');
 
     resetCustomShapeWindow();
     checkPBLS();
@@ -92,6 +93,7 @@ $(document).on("click", ".pbAdd", function () {
     $('.pbEdit>i').addClass('fa-edit').removeClass('fa-check');
     $('.pinBoard').removeClass('pinBoard-EditMode');
     $('.pbEdit').addClass('hide');
+    $('.pbAdd').addClass('hide');
 });
 
 $(document).on("click", ".defocus", function (event) {
@@ -176,6 +178,26 @@ $(document).on("click", "#ce-enable", function () {
     location.reload();
 });
 
+$(document).on("click", "#rc-disable", function () {
+    localStorage.setItem('rc-optin', 'n');
+    location.reload();
+});
+
+$(document).on("click", "#rc-enable", function () {
+    localStorage.setItem('rc-optin', 'y');
+    location.reload();
+});
+
+$(document).on("click", "#ro-disable", function () {
+    localStorage.setItem('ro-optin', 'n');
+    location.reload();
+});
+
+$(document).on("click", "#ro-enable", function () {
+    localStorage.setItem('ro-optin', 'y');
+    location.reload();
+});
+
 $(document).on("click", ".setting-expandBtn", function () {
     if ($(this).parent().parent().hasClass('setting-expandedSetting')) {
         $('.setting').removeClass('setting-expandedSetting');
@@ -195,11 +217,21 @@ $(document).on("contextmenu", ".contextEditPBW", function (e) {
 $(document).on("click", ".contextEditPBC", function (e) {
     if (e.target.classList.contains('pbWidget')) {
 
+    } else if (e.target.classList.contains('so-move')) {
+
     } else {
         $('.shape').removeClass('selectedShape');
         $('.pinBoard').removeClass('pinBoard-EditMode');
         checkPBLS();
     }
+});
+
+$(document).on("click", "#so-moveLeft", function () {
+    $(this).parent().parent().insertBefore($(this).parent().parent().prev());
+});
+
+$(document).on("click", "#so-moveRight", function () {
+    $(this).parent().parent().insertAfter($(this).parent().parent().next());
 });
 
 function showSmalls() {
@@ -284,6 +316,34 @@ function contextEdit() {
     }
 }
 
+function roundedCorners() {
+    if (localStorage.getItem('rc-optin') == "y") {
+        $('.contentView').addClass('rc');
+
+        $('#rc-enable').attr('checked', true);
+        $('#rc-disable').attr('checked', false);
+    } else {
+        $('.contentView').removeClass('rc');
+
+        $('#rc-disable').attr('checked', true);
+        $('#rc-enable').attr('checked', false);
+    }
+}
+
+function reorderWidgets() {
+    if (localStorage.getItem('ro-optin') == "y") {
+        $('.so-move').removeClass('hide');
+
+        $('#ro-enable').attr('checked', true);
+        $('#ro-disable').attr('checked', false);
+    } else {
+        $('.so-move').addClass('hide');
+
+        $('#ro-disable').attr('checked', true);
+        $('#ro-enable').attr('checked', false);
+    }
+}
+
 function resetCustomShapeWindow() {
     $('.cswPreview').attr('id', 'shape1');
     $('#csoo-opacity').val('50');
@@ -326,8 +386,9 @@ function shapesPage() {
 
     $('.setting').removeClass('setting-expandedSetting')
     $(".shapesGrid").removeClass('sgShow');
-    $(".pbEdit").removeClass('hide');
+    $(".topNav").removeClass('hide');
     $('.csw-cancel').click();
+    $('.pbAdd').removeClass('hide');
 
     pageLabel.innerText = "Home"
 }
@@ -338,17 +399,11 @@ function settingsPage() {
     pinBoard.style.display = "none";
 
     $(".shapesGrid").removeClass('sgShow');
-    $(".pbEdit").addClass('hide');
+    $(".topNav").addClass('hide');
     $('.csw-cancel').click();
+    $('.pbAdd').addClass('hide');
 
     pageLabel.innerText = "Settings"
-}
-
-function makePinBoard() {
-    pinBoard.style.maxWidth = gridWidth * 130;
-    pinBoard.style.maxHeight = gridHeight * 130;
-    // pinBoard.style.gridTemplateColumns = "repeat(" + gridWidth + ", 1fr)";
-    // pinBoard.style.gridTemplateRows = "repeat(" + gridHeight + ", 1fr)";
 }
 
 function backgroundGradientGen() {
@@ -361,7 +416,7 @@ function backgroundGradientGen() {
     settings.style.backgroundColor = randColor;
     widgetsGrid.style.backgroundColor = randColor;
     document.body.style.backgroundColor = "black";
-    pageLabel.style.color = randColor;
+    // pageLabel.style.color = randColor;
     root.style.setProperty('--randColor', randColor);
 }
 

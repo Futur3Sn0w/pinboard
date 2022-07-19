@@ -5,20 +5,23 @@
         max-height: 120px;
     }
 
-    .pbContainer,
-    .settings {
+    .contentView {
         width: 100vw !important;
-        max-height: calc(100% - 110px) !important;
-        height: calc(100% - 110px) !important;
+        max-height: calc(100% - 60px) !important;
+        height: calc(100% - 60px) !important;
 
-        top: 50px;
+        top: 0;
         bottom: 0;
 
-        border-radius: 16px !important;
+        border-radius: 0 !important;
+    }
+
+    .contentView.rc {
+        border-radius: 0 0 16px 16px !important;
     }
 
     .pbAdd {
-        bottom: 70px;
+        bottom: 65px;
     }
 
     .sideNav {
@@ -41,7 +44,7 @@
     }
 
     .pageLabel {
-        margin: 0 0 0 15px;
+        margin: 0;
     }
 
     .blankBoard {
@@ -50,11 +53,13 @@
 
     .customShapeWindow {
         width: 100%;
-        height: calc(100% - 110px);
+        height: calc(100% - 60px);
 
-        top: 50px;
+        top: 0;
         left: 0;
-        border-radius: 16px;
+        border-radius: 0;
+
+        z-index: 101;
 
         transform: translate(0);
     }

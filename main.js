@@ -1,13 +1,21 @@
 var pinBoard = document.getElementById('pinBoard');
 var pinBoardContainer = document.getElementById('pbCont');
 var settings = document.getElementById('settings');
-var widgetsGrid = document.getElementById('widgetsGrid');
 var pageLabel = document.getElementById('pageLabel');
 
 var customShapeWindow = document.getElementById('customShapeWindow');
 
 var savedGridState = localStorage.getItem('pbSet');
 var root = document.querySelector(':root');
+
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+        navigator.serviceWorker
+            .register("/serviceWorker.js")
+            .then(res => console.log("service worker registered"))
+            .catch(err => console.log("service worker not registered", err))
+    })
+}
 
 window.onload = function () {
     backgroundGradientGen();
@@ -368,21 +376,9 @@ function checkPBLS() {
     }
 }
 
-function widgetsPage() {
-    widgetsGrid.style.display = "flex";
-    settings.style.display = "none";
-    pinBoard.style.display = "none";
-
-    $(".shapesGrid").removeClass('sgShow');
-    $(".pbEdit").addClass('hide');
-
-    pageLabel.innerText = "Widgets (DEMO)"
-}
-
 function shapesPage() {
     pinBoard.style.display = "flex";
     settings.style.display = "none";
-    widgetsGrid.style.display = "none";
 
     $('.setting').removeClass('setting-expandedSetting')
     $(".shapesGrid").removeClass('sgShow');
@@ -395,7 +391,6 @@ function shapesPage() {
 
 function settingsPage() {
     settings.style.display = "flex";
-    widgetsGrid.style.display = "none";
     pinBoard.style.display = "none";
 
     $(".shapesGrid").removeClass('sgShow');
@@ -411,12 +406,9 @@ function backgroundGradientGen() {
     var randColor = colors[Math.floor(Math.random() * colors.length)];
     var NewColor = LightenDarkenColor(randColor, -160);
 
-    // pinBoard.style.backgroundColor = randColor;
     pinBoardContainer.style.backgroundColor = randColor;
     settings.style.backgroundColor = randColor;
-    widgetsGrid.style.backgroundColor = randColor;
     document.body.style.backgroundColor = "black";
-    // pageLabel.style.color = randColor;
     root.style.setProperty('--randColor', randColor);
 }
 

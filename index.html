@@ -11,12 +11,14 @@
     <link rel='stylesheet' type='text/css' media='screen' href='css/csw.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/mobile.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/settings.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='css/widgets.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/globals.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/fonts.css'>
-    <link rel="stylesheet" href="css/globals.css">
     <script src="https://kit.fontawesome.com/a1fc6f0f3a.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#000000" />
 </head>
 
 <body>
@@ -26,6 +28,9 @@
         </div>
         <div class="pinBoard" id="pinBoard"></div>
     </div>
+
+
+    <div class="rocver"></div>
 
     <div class="customShapeWindow" id="customShapeWindow">
         <div class="shape cswPreview" id="shape1" data-opacity="">
@@ -127,8 +132,8 @@
                         </div>
                     </div>
                     <div class="setting sub-setting">
-                        <div class="settingLabel" data-settingCaption="Enable rounded corners on contentView(s)">Rounded
-                            Corners
+                        <div class="settingLabel" data-settingCaption="Enable roCveR on contentView(s)">Rounded
+                            Corners (roCveR)
                         </div>
                         <div class="toggleSwitch so-rc">
                             <input class="toggle-disable" type="radio" name="roundedCornersOptin" id="rc-disable"
@@ -152,7 +157,7 @@
                 <div class="setting-header">
                     <i class="fa-solid fa-info-circle"></i>
                     <div class="settingLabel" data-settingCaption="Pinboard is in beta. Beware of bugs!">
-                        Pinboard v0.9.0</div>
+                        Pinboard v0.10.0</div>
                     <div class="setting-expandBtn">
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
@@ -199,10 +204,6 @@
             <i class="fa-solid fa-shapes"></i>
         </div>
 
-        <div class="pageBtn" id="pbWids" data-pageName="Widgets" style="display: none;" onclick="widgetsPage()">
-            <i class="fa-solid fa-sliders"></i>
-        </div>
-
         <div class="pageBtn" id="pbSettings" data-pageName="Settings" onclick="settingsPage()">
             <i class="fa-solid fa-gear"></i>
         </div>
@@ -224,54 +225,7 @@
         </div>
     </div>
 
-    <div class="widgetGrid" id="widgetsGrid">
-        <div class="widgets">
-            <div class="widget">
-                <div class="volumeSliderWidget" id="vsw">
-                    <div class="vswBtn ringerBtn">
-                        <i class="fa-solid fa-bell"></i>
-                    </div>
-                    <div class="track"></div>
-                    <div class="progress" id="vsp">
-                        <i class="fa-brands fa-itunes-note"></i>
-                    </div>
-                    <div class="vswBtn moreBtn">
-                        <i class="fa-solid fa-ellipsis-vertical"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="subGrid">
-                <div class="widget">
-                    <div class="musicControlWidget">
-                        <div class="button btn1" id="playPause" data-state="playing">
-                            <i class="fa-solid fa-pause"></i>
-                        </div>
-                        <div class="button btn2">
-                            <i class="fa-solid fa-backward-step"></i>
-                        </div>
-                        <div class="button btn3">
-                            <i class="fa-solid fa-forward-step"></i>
-                        </div>
-                        <div class="slider">
-                            <div class="line" id="playingLine"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="widget">
-                    <div class="timePickerWidget">
-                        <div class="clockBody">
-                            <div id="minute"></div>
-                            <div id="hour"></div>
-                            <div id="second"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src='main.js'></script>
-    <script src='widgets.js'></script>
 
 </body>
 

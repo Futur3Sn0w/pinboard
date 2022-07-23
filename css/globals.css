@@ -1,5 +1,4 @@
 :root {
-    --flatLine: transparent;
     --borderColor: white;
 
     --baseColor0: #acbca4;
@@ -51,7 +50,17 @@ body {
 }
 
 * {
-    box-sizing: border-box;
+    box-sizing: border-box !important;
+}
+
+i {
+    pointer-events: none;
+    user-select: none;
+}
+
+
+svg {
+    border: 1px solid
 }
 
 .blankBoard {
@@ -61,7 +70,6 @@ body {
     transform: translateX(-50%);
 
     width: 25ch;
-    box-sizing: content-box;
 
     font-size: 16px;
     font-family: GST-Med;
@@ -87,12 +95,39 @@ body {
     right: 0;
     z-index: 1;
 
-    border-radius: 0;
     overflow: hidden;
 
     padding-top: 50px;
 }
 
 .contentView.rc {
-    border-radius: 16px 0 0 16px;
+    border-radius: 16px 0 0 0 !important;
+}
+
+.rocver {
+    width: 25px;
+    height: 25px;
+
+    background-color: var(--randColor);
+    overflow: hidden;
+
+    position: absolute;
+    left: 45px;
+    bottom: 0;
+    z-index: 10000;
+}
+
+.rocver::before {
+    content: "";
+
+    width: 40px;
+    height: 40px;
+
+    background-color: black;
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    border-radius: 16px;
 }

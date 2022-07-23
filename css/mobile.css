@@ -81,4 +81,8 @@
 
         width: 100%;
     }
+
+    .rocver {
+        display: none;
+    }
 }

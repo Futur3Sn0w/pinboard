@@ -68,6 +68,8 @@
     min-height: 130px;
     max-height: 130px;
 
+    clip-path: url(#clp);
+
     mix-blend-mode: difference;
     font-size: 35px;
     cursor: pointer;

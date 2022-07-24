@@ -70,7 +70,8 @@ svg {
     bottom: 15px;
     transform: translateX(-50%);
 
-    width: 25ch;
+    width: 28ch;
+    text-align: center;
 
     font-size: 16px;
     font-family: GST-Med;

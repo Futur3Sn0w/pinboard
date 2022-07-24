@@ -22,7 +22,6 @@ window.onload = function () {
     checkPBLS();
 
     pinBoard.innerHTML = savedGridState;
-    pinBoardContainer.style.alignItems = localStorage.getItem('setting-valign');
     movableWidgets();
     contextEdit();
     roundedCorners();
@@ -166,44 +165,28 @@ $(document).on("click", ".pb-align", function () {
     }
 });
 
-$(document).on("click", "#mw-disable", function () {
-    localStorage.setItem('movable-optin', 'n');
-    location.reload();
-});
-
-$(document).on("click", "#mw-enable", function () {
-    localStorage.setItem('movable-optin', 'y');
-    location.reload();
-});
-
 $(document).on("click", "#ce-disable", function () {
     localStorage.setItem('ce-optin', 'n');
-    location.reload();
 });
 
 $(document).on("click", "#ce-enable", function () {
     localStorage.setItem('ce-optin', 'y');
-    location.reload();
 });
 
 $(document).on("click", "#rc-disable", function () {
     localStorage.setItem('rc-optin', 'n');
-    location.reload();
 });
 
 $(document).on("click", "#rc-enable", function () {
     localStorage.setItem('rc-optin', 'y');
-    location.reload();
 });
 
 $(document).on("click", "#ro-disable", function () {
     localStorage.setItem('ro-optin', 'n');
-    location.reload();
 });
 
 $(document).on("click", "#ro-enable", function () {
     localStorage.setItem('ro-optin', 'y');
-    location.reload();
 });
 
 $(document).on("click", ".setting-expandBtn", function () {

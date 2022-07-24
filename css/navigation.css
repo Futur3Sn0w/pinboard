@@ -22,6 +22,7 @@
 }
 
 .topNav {
+    width: -moz-fit-content;
     width: fit-content;
     height: 40px;
     mix-blend-mode: difference;

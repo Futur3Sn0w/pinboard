@@ -8,6 +8,7 @@
     width: calc(100vw - 70px);
     height: 100vh;
 
+    -webkit-user-select: none;
     user-select: none;
 
     position: absolute;
@@ -256,35 +257,4 @@
 #bgdChng {
     margin-left: auto;
     margin-right: 15px;
-}
-
-.so-align {
-    border-radius: 100px;
-
-    flex-direction: row;
-
-    gap: 2px !important;
-    mix-blend-mode: difference;
-
-    width: min-content;
-
-    overflow: hidden;
-}
-
-.pb-align {
-    appearance: none;
-
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 6px;
-    cursor: pointer;
-
-    width: 30px;
-    height: 30px;
-
-    padding: 3px 5px;
-    margin: 0;
-}
-
-.pb-align:checked {
-    background-color: rgb(102, 102, 102);
 }

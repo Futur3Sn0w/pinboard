@@ -8,21 +8,20 @@ var customShapeWindow = document.getElementById('customShapeWindow');
 var savedGridState = localStorage.getItem('pbSet');
 var root = document.querySelector(':root');
 
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function () {
-        navigator.serviceWorker
-            .register("serviceWorker.js")
-            .then(res => console.log("service worker registered"))
-            .catch(err => console.log("service worker not registered", err))
-    })
-}
+// if ("serviceWorker" in navigator) {
+//     window.addEventListener("load", function () {
+//         navigator.serviceWorker
+//             .register("serviceWorker.js")
+//             .then(res => console.log("service worker registered"))
+//             .catch(err => console.log("service worker not registered", err))
+//     })
+// }
 
 window.onload = function () {
     backgroundGradientGen();
     checkPBLS();
 
     pinBoard.innerHTML = savedGridState;
-    movableWidgets();
     contextEdit();
     roundedCorners();
     reorderWidgets();
@@ -94,7 +93,6 @@ $(document).on("click", ".sideNav .pageBtn:not(.pageBtn-sel)", function () {
 $(document).on("click", ".pbAdd", function () {
     customShapeWindow.style.display = "flex";
     $(".shapesGrid").removeClass('sgShow');
-    // $(".shapesGrid").addClass('sgShow');
     $(".pinBoard").addClass('defocus');
 
     $('.pbEdit>i').addClass('fa-edit').removeClass('fa-check');
@@ -127,12 +125,6 @@ $(document).on("click", ".shop1", function () {
     checkPBLS();
 });
 
-$(document).on("click", ".shop2", function () {
-    // toggleMW();
-    localStorage.setItem('pbSet', pinBoard.innerHTML);
-    checkPBLS();
-});
-
 $(".pbWidget").on("taphold", function () {
     $('.pbEdit').click();
 });
@@ -149,44 +141,6 @@ $(document).on("click", "#rp-reset", function () {
     window.localStorage.clear();
     alert('Pinboard has been reset. Page will now refresh!');
     location.reload();
-});
-
-$(document).on("click", ".pb-align", function () {
-    var align = $(this).children('label').text().toLowerCase();
-
-    if (align == "center") {
-        document.getElementById('pbCont').style.alignItems = "center";
-        localStorage.setItem('setting-valign', pinBoardContainer.style.alignItems);
-        saveSettings();
-    } else {
-        document.getElementById('pbCont').style.alignItems = "flex-start";
-        localStorage.setItem('setting-valign', pinBoardContainer.style.alignItems);
-        saveSettings();
-    }
-});
-
-$(document).on("click", "#ce-disable", function () {
-    localStorage.setItem('ce-optin', 'n');
-});
-
-$(document).on("click", "#ce-enable", function () {
-    localStorage.setItem('ce-optin', 'y');
-});
-
-$(document).on("click", "#rc-disable", function () {
-    localStorage.setItem('rc-optin', 'n');
-});
-
-$(document).on("click", "#rc-enable", function () {
-    localStorage.setItem('rc-optin', 'y');
-});
-
-$(document).on("click", "#ro-disable", function () {
-    localStorage.setItem('ro-optin', 'n');
-});
-
-$(document).on("click", "#ro-enable", function () {
-    localStorage.setItem('ro-optin', 'y');
 });
 
 $(document).on("click", ".setting-expandBtn", function () {
@@ -246,93 +200,20 @@ function updateCSW() {
     $('.cswPreview').attr('data-opacity', $('#csoo-text').val());
 }
 
-function toggleMW() {
-    var mw = false;
-    let circle = document.querySelector('.selectedShape');
-
-    const onMouseMove = (e) => {
-        circle.style.left = (e.pageX - 90) + 'px';
-        circle.style.top = (e.pageY - 110) + 'px';
-    };
-
-    if (mw = false) {
-        document.removeEventListener('mousedown', onMouseMove);
-        mw = !mw;
-    } else if (mw = true) {
-        document.addEventListener('mousedown', onMouseMove);
-        mw = !mw;
-    };
-
-}
-
-function movableWidgets() {
-    if (localStorage.getItem('movable-optin') == "y") {
-        $('.pbWidget').addClass('movable');
-
-        $('.shop2').removeClass('hide');
-        $('.pinBoard').css('height', "100%");
-        $('.pbSubSet-valign').css('display', "none");
-
-        $('#mw-enable').attr('checked', true);
-        $('#mw-disable').attr('checked', false);
-    } else {
-        $('.pbWidget').removeClass('movable');
-
-        $('.shop2').addClass('hide');
-        $('.pinBoard').css('height', "fit-content");
-        $('.pbSubSet-valign').css('display', "flex");
-
-        $('#mw-disable').attr('checked', true);
-        $('#mw-enable').attr('checked', false);
-    }
-}
-
 function contextEdit() {
-    if (localStorage.getItem('ce-optin') == "y") {
-        $('.topNav').css('display', 'none');
+    $('.topNav').css('display', 'none');
 
-        $('.pbWidget').addClass('contextEditPBW');
-        $('.pbContainer').addClass('contextEditPBC');
+    $('.pbWidget').addClass('contextEditPBW');
+    $('.pbContainer').addClass('contextEditPBC');
 
-        $('#ce-enable').attr('checked', true);
-        $('#ce-disable').attr('checked', false);
-    } else {
-        $('.topNav').css('display', 'flex');
-
-        $('.pbWidget').removeClass('contextEditPBW');
-        $('.pbContainer').removeClass('contextEditPBC');
-
-        $('#ce-disable').attr('checked', true);
-        $('#ce-enable').attr('checked', false);
-    }
 }
 
 function roundedCorners() {
-    if (localStorage.getItem('rc-optin') == "y") {
-        $('.contentView').addClass('rc');
-
-        $('#rc-enable').attr('checked', true);
-        $('#rc-disable').attr('checked', false);
-    } else {
-        $('.contentView').removeClass('rc');
-
-        $('#rc-disable').attr('checked', true);
-        $('#rc-enable').attr('checked', false);
-    }
+    $('.contentView').addClass('rc');
 }
 
 function reorderWidgets() {
-    if (localStorage.getItem('ro-optin') == "y") {
-        $('.so-move').removeClass('hide');
-
-        $('#ro-enable').attr('checked', true);
-        $('#ro-disable').attr('checked', false);
-    } else {
-        $('.so-move').addClass('hide');
-
-        $('#ro-disable').attr('checked', true);
-        $('#ro-enable').attr('checked', false);
-    }
+    $('.so-move').removeClass('hide');
 }
 
 function resetCustomShapeWindow() {
@@ -365,7 +246,6 @@ function shapesPage() {
 
     $('.setting').removeClass('setting-expandedSetting')
     $(".shapesGrid").removeClass('sgShow');
-    $(".topNav").removeClass('hide');
     $('.csw-cancel').click();
     $('.pbAdd').removeClass('hide');
 

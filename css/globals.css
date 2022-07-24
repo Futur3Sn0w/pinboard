@@ -55,6 +55,7 @@ body {
 
 i {
     pointer-events: none;
+    -webkit-user-select: none;
     user-select: none;
 }
 
@@ -104,7 +105,7 @@ svg {
     border-radius: 16px 0 0 0 !important;
 }
 
-.rocver {
+.lh-corner {
     width: 25px;
     height: 25px;
 
@@ -117,7 +118,7 @@ svg {
     z-index: 10000;
 }
 
-.rocver::before {
+.lh-corner::before {
     content: "";
 
     width: 40px;

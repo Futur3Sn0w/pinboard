@@ -21,8 +21,8 @@ window.onload = function () {
     backgroundGradientGen();
     checkPBLS();
 
-    pinBoardContainer.style.alignItems = localStorage.getItem('setting-valign');
     pinBoard.innerHTML = savedGridState;
+    pinBoardContainer.style.alignItems = localStorage.getItem('setting-valign');
     movableWidgets();
     contextEdit();
     roundedCorners();
